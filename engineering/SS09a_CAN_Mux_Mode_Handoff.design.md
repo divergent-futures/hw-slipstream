@@ -13,6 +13,16 @@
 
 Drive-mode pack cooling rides SS07 Lane-2 provisions (open pump control + temp-derated assist via BE limits) — the car-brain is asleep on the road.
 
+### 1b. The cooling conflict, resolved (TJ, 2026-07-24: "who cools the pack while OUR brain drives?")
+
+The muscles are shared; only the brain switches. Pumps, radiator fan, compressor, and the Octovalve are dumb actuators — they obey whoever commands them, and none of them care which mode we're in. Three cooling levels:
+
+- **Level 1 (DRIVE default): pumps + radiator + fan.** Simple 12V/PWM devices our supervisor runs directly. The heat math says this is nearly always enough: ~30 kW assist ≈ 0.6–0.9 kW pack heat (0.4C on a 60–78 kWh pack — gentle) + ~1.8 kW DU heat = **~2.5–3 kW total against a car-sized radiator with 50 mph of free airflow.** The EV-swap world runs Tesla DUs on pump+radiator alone as standard practice; cars only invoke the chiller for fast-charging and hot-day extremes.
+- **Level 2 (DRIVE, hot day): + compressor→chiller.** The compressor takes simple documented CAN commands (duty % + max watts) — our side can run it without the car-brain if Level 1 falls short. Provisioned, not required.
+- **Level 3 (CAMP): full Octovalve orchestration** — Tesla software, cabin + pack together. The DU is idle while camped, so there's no "Tesla must also cool the drivetrain" conflict: in CAMP the drivetrain makes no heat; in DRIVE the cabin needs none.
+
+**The valve position is the one real coordination point:** the CAMP→DRIVE handoff sequence includes "leave the Octovalve in the drive/series position" before the car-brain powers down (or the supervisor nudges the stepper itself — bench question #5). Backstop regardless of all of it: BE reads pack temps from the BMS continuously, and followdrive derates to zero assist on over-temp — worst case the flagship becomes an ordinary dumb trailer mid-trip and the Y just tows it.
+
 ## 2. Architecture: switch the BUS, gate the BRAIN
 
 Two physical actions, one mode selector:
@@ -60,6 +70,8 @@ Single-master invariant enforced by PHYSICS (relay contacts), not software promi
 3. Does CAMP-mode native charging need the car to also see the charge port ECU on its branch? (Yes — charge port lives on Branch A permanently; confirm no open-stack need for it)
 4. Selector ergonomics: outside coupler-side panel vs inside galley — decide at SS05 CAD
 5. Publish: state diagram + firmware + bench transcript as the flagship's first standalone open-source release (predates the trailer itself)
+6. Octovalve positioning without VCFRONT: can the supervisor command the stepper directly, or does the CAMP→DRIVE sequence park the valve before car-brain shutdown? Bench-characterize both paths
+7. Coolant loop plumbing across modes: confirm the drive-position valve state serves pack+DU series flow with cabin loop isolated (SS07 Lane-2 diagram update)
 
 ---
 *v0.1, 2026-07-24. Design-complete pending bench characterization; every claim about BMS/car behavior is superseded by the first bench session. The mux hardware is trivial on purpose — trust the sequence, not the silicon.*
