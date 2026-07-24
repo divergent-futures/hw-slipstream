@@ -787,6 +787,44 @@
             }
           ],
           "note": "The donor pack PCS ran the whole car at 12V (~193A/2.5 kW). House loads ride it directly; buffer battery catches solar + keeps the trailer alive when the pack winters at the house. Requires the salvage propulsion pack."
+        },
+        {
+          "id": "hv_hybrid",
+          "name": "HV hybrid inverter on the trailer",
+          "sub": "flagship v2 · single conversion 400V→AC · 12V demoted to control rail",
+          "effects": {
+            "kwh": -12,
+            "addLb": -165,
+            "addCostUsd": -100,
+            "v2hKwh": -12
+          },
+          "parts": [
+            {
+              "id": "12v-buffer-lfp",
+              "name": "12V 100Ah LFP buffer battery (control rail)",
+              "qty": 1,
+              "estUsd": 300
+            },
+            {
+              "id": "solis-s6-trailer",
+              "name": "Solis S6-EH1P11.4K-H-US hybrid inverter, trailer-mounted on isolators (120-500V batt, 4 MPPT, EPS)",
+              "qty": 1,
+              "estUsd": 2400
+            },
+            {
+              "id": "battery-emulator-lilygo",
+              "name": "Battery-Emulator on LilyGo T-CAN485 (BMS CAN interface)",
+              "qty": 1,
+              "estUsd": 70
+            },
+            {
+              "id": "maguire-pcs-controller",
+              "name": "Maguire open PCS controller (12V rail + 11 kW AC charging retained)",
+              "qty": 1,
+              "estUsd": 120
+            }
+          ],
+          "note": "Three-rail doctrine (docs/HV_Power_Architecture_v0_1.md): 400V DC bus for HV-native loads (Tesla S/X Gen2 A/C compressor CAN-driven at pack voltage - proven; 400V coolant heater hydronic loop for shower/space heat), ONE 97% conversion to 240/120VAC for induction/toaster/water heater/EVSE (pack charges the CAR at ~7.6 kW), 12V shrinks to lights/pumps/controls off the PCS. Deletes the MultiPlus. The donor PCS KEEPS its full role (11 kW AC charging + 12V rail) - the Solis AC-in is a second, independent charge path. solar DC-couples into the Solis MPPTs. Generator-mode V2H jumps to ~10 kW through a 50A inlet - house-side dock inverter becomes optional. Caveat: stationary UL9540 unit used mobile = pioneer territory; isolate for vibration, EPS mode off-grid."
         }
       ]
     },
@@ -3597,10 +3635,13 @@
       "id": "pcs12v-needs-pack",
       "type": "forbid",
       "when": {
-        "battery": "pcs12v",
+        "battery": [
+          "pcs12v",
+          "hv_hybrid"
+        ],
         "propulsion_pack": "none"
       },
-      "message": "The 12V-spine option draws from the salvage HV pack PCS - it requires the propulsion pack."
+      "message": "The 12V-spine / HV-hybrid options draw from the salvage HV pack - they require the propulsion pack."
     },
     {
       "id": "pcs12v-inverter-moot",
@@ -3643,6 +3684,18 @@
         "propulsion_pack": "sodium_future"
       },
       "message": "Sodium-ion is a roadmap chemistry - no US salvage volume yet (~2028+). Spec'd here so the V2H story is designed-for, not bolted-on. Tesla-PCS-dependent options need the Elcon + DC-DC fallback."
+    },
+    {
+      "id": "hv-hybrid-charging-redundant",
+      "type": "warn",
+      "when": {
+        "battery": "hv_hybrid",
+        "hv_charging": [
+          "elcon",
+          "volt_stack"
+        ]
+      },
+      "message": "Next to the trailer hybrid inverter, an Elcon or Volt-stack charger is redundant weight/cost. The donor PCS is NOT redundant - it stays (native 11 kW charge path + 12V rail); two independent charge paths = good redundancy on a pioneer build."
     }
   ],
   "profiles": [
@@ -3865,6 +3918,14 @@
       {
         "when": {
           "battery": "pcs12v"
+        },
+        "forks": [
+          "inverter"
+        ]
+      },
+      {
+        "when": {
+          "battery": "hv_hybrid"
         },
         "forks": [
           "inverter"
