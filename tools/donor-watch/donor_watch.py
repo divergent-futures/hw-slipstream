@@ -63,8 +63,12 @@ def score_lot(lot, cfg):
     if "rear" in dmg:
         reasons.append("rear hit preserves front thermal gear (Octovalve Lane-2 harvest)")
     yr0 = lot.get("year") or 0
-    if yr0 >= 2024:
-        reasons.append("2024+ FLAGSHIP PACK DONOR: Highland/Juniper-era, Battery-Emulator-confirmed (Digital HVIL), newest chemistry/SoH; note DU/PCS open-board support unproven on 2024+ - split-donor strategy")
+    trim0 = (lot.get("trim") or "").lower()
+    is_rwd = any(t in trim0 for t in ("rwd", "standard", "sr"))
+    if 2022 <= yr0 <= 2024 and is_rwd and "model 3" in (lot.get("model") or "").lower():
+        reasons.append("TRACK-1 FLAGSHIP PACK DONOR: 2022-2024 Model 3 RWD = CATL LFP (Gen2 60 kWh - same pack design still shipping new in 2026; US LFP window closed Oct 2024, so this IS the newest US LFP)")
+    elif yr0 >= 2025:
+        reasons.append("2025+: NO US LFP (Standard trims = NCA/NMC 2170) - newest pack but nickel chemistry; treat as LR-class fallback donor")
     elif 2021 <= yr0 <= 2023:
         reasons.append("2021-2023: proven-DU-path donor (Maguire board demonstrated) - the drive-unit half of the split-donor strategy")
     if lot.get("run_drive"):

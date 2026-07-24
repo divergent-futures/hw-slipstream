@@ -10,7 +10,7 @@
 | D-F1 | 1,900 lb dry / Model Y | **≤3,500 lb LOADED, still behind the Model Y** | TJ: it must be pullable by the Y. The assist carries the load in motion; the 3,500 lb line keeps the hitch/brake/dead-battery story legal and honest |
 | D-F2 | 12 kWh 48V LFP house pack | **NO 48V pack. 12V house spine fed by the donor PCS (~2.5 kW)** + ~100Ah 12V LFP buffer | The pack's own DC-DC ran the whole donor car; it's free, open-controlled (Maguire PCS board), and deletes 230 lb + $2.9K + two DC-DC rails |
 | D-F3 | 12' box (reference) | **12' box, 15' fallback** | Weight math (§3) only closes at 12'; 15' triggers only if the pack+living layout physically fails — decide at CAD |
-| D-F4 | Battery = 2170 LR assumption | **CATL LFP 55–60 kWh pack preferred** (2021+ SR/RWD donor) | 88 lb lighter, cheaper, safer chemistry, happy parked at 100% — and 55 kWh is plenty for assist + house + V2H |
+| D-F4 | Battery = 2170 LR assumption | **CATL LFP Gen2 60 kWh — 2022–2024 Model 3 RWD donor** (Pack Selection Memo 2026-07-10: newest US LFP that exists; same pack design ships new in Canada 2026) | 88 lb lighter, cheaper, safer chemistry, happy parked at 100%; 60 kWh is plenty for assist + house + V2H. Fallbacks ranked: Mach-E SR LFP (72 kWh, costs the PCS spine) → LR 2170 NCA (abundant, 60–80% SoC discipline) |
 
 Unchanged: pop-up soft-side, aero doctrine, composting head, outdoor shower, open-source everything, personal-cash cap discipline.
 
