@@ -56,7 +56,7 @@ Salvage Tesla pack (LFP 60 or nickel ~78 kWh, sealed, stock BMS)
 | Payload budget (water 250 + gear/food) | 470–560 | weekend discipline, now chemistry-dependent |
 | **LOADED** | **≤3,500 — HARD CAP** ⚠️ | **War status: on paper the nickel+car-brain combo eats ~150 lb of payload margin.** Offsets at CAD: interior −50 target, harvest trim (skip VCRIGHT-served items?), payload discipline. The cap never moves; payload flexes. Tongue ~310–350 lb — verify gray-empty case per SS05a |
 
-Every SS-track mass line gets re-baselined to this table. CAD carries CG + tongue live, as ever.
+**→ SUPERSEDED at component level by `engineering/SS05b_Mass_Budget.md` + `flagship_mass_budget.py` (2026-07-24):** honest inventory = dry ~3,205 LFP / ~3,293 nickel (fluids counted). War closes via the S1 strip list (−152, no capability loss) + **tow-empty water doctrine** (fresh tank fills at the campsite; −167 at the hitch): LFP tows at 3,363 (−137 ✓), nickel 3,451 (−49 ✓, S2 reserve −33 available). CAD carries CG + tongue live, as ever; balance solver re-run pending at these masses.
 
 ## 4. Build sequence (replaces reference-build V0.1 scope)
 
