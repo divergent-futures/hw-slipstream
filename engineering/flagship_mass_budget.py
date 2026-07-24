@@ -94,3 +94,35 @@ if __name__ == "__main__":
     for name, dry in (("LFP", dry_lfp), ("nickel", dry_ni)):
         d = dry - s1_total
         print(f"{name}+S1: dry {d} | tow water-empty {d+PAYLOAD_GEAR} ({d+PAYLOAD_GEAR-CAP:+d}) | tow full-fresh {d+PAYLOAD_GEAR+WATER_FULL} ({d+PAYLOAD_GEAR+WATER_FULL-CAP:+d})")
+
+
+# ---------------- V1 staged-build scenarios (TJ, 2026-07-24) ----------------
+# V1 = nickel pack + wheels, NO truck drive, NO car-brain/cooling loop (passive
+# pack: 11 kW charge = 0.14C on 78 kWh - benign; verify at commissioning).
+# V2 = the designed-in upgrade: DU + car-brain + full cooling loop.
+
+V1_REMOVE = {"du_subframe", "car_computer_screen", "body_controllers", "vcsec_antennas",
+             "harness", "supermanifold", "compressor", "hvac_box", "radiator_fans",
+             "coolant_pumps", "lv_aux_batt", "cameras", "coolant_ext", "refrigerant"}
+# keep: charge_port (inlet hw for Maguire-PCS charging), eh_brake_actuator (donor calipers)
+
+V1_ADD_SUBFRAME = [("subframe_no_du", 300, "donor rear subframe, DU removed (DU develops on the bench; bolts in for V2)"),
+                   ("tankless_120v", 8, "120V tankless water heater (no hydronic loop in V1)"),
+                   ("hv_wiring_credit", -12, "no DU/compressor HV branches yet")]
+V1_ADD_TIMBREN  = [("timbren_axle", 130, "Timbren axle-less pair + hubs + electric brakes"),
+                   ("tankless_120v", 8, "120V tankless water heater"),
+                   ("hv_wiring_credit", -12, "no DU/compressor HV branches yet")]
+S1_V1 = 152 - 25   # water-heater delete n/a in V1 (tankless replaces hydronic)
+
+def v1_dry(adds, nickel=True):
+    d = total(skip=V1_REMOVE) + sum(lb for _, lb, _ in adds)
+    return d + (NICKEL_DELTA if nickel else 0)
+
+if __name__ == "__main__" and True:
+    print("\n=== V1 staged-build (nickel) ===")
+    for name, adds in (("subframe-no-DU route", V1_ADD_SUBFRAME), ("Timbren route", V1_ADD_TIMBREN)):
+        d = v1_dry(adds)
+        for label, dd in ((f"V1 {name}", d), (f"V1 {name} + S1", d - S1_V1)):
+            print(f"{label}: dry {dd} | tow water-empty {dd+PAYLOAD_GEAR} ({dd+PAYLOAD_GEAR-CAP:+d}) | tow full-fresh {dd+PAYLOAD_GEAR+WATER_FULL} ({dd+PAYLOAD_GEAR+WATER_FULL-CAP:+d})")
+    up = 180 + 170 + 28 + 12 - 8   # DU + car-brain + fluids + HV branches - tankless
+    print(f"\nV2 upgrade adds back ~{up} lb -> full flagship (the war already closed in §3)")

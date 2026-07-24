@@ -57,5 +57,18 @@ The 3,500 cap applies **while towing**. Gray water must be dumped before towing 
 3. LFP's tiebreaker value just went up again: the −88 lb is nearly double nickel's post-S1 margin. Worth remembering on auction day when the two tracks tie.
 4. Payload discipline is design-load 310 lb of gear — the configurator and the manual say so out loud.
 
+## 5. V1 staged build (TJ, 2026-07-24): the war doesn't even start until V2
+
+**V1 = nickel pack + wheels. No truck drive, no car-brain, no cooling loop** (passive pack: 11 kW charging = 0.14C on 78 kWh — benign; verify at commissioning). Camping + V2H energy trailer first; the drive system, car-brain, and full thermal loop are the **V2 upgrade** (~+382 lb, which lands exactly on the full-flagship war already closed in §3).
+
+| V1 scenario (nickel) | Dry | Tow water-empty | Tow full-fresh |
+|---|---|---|---|
+| **Donor subframe, DU removed** (recommended) | 2,911 | 3,221 (−279 ✓) | 3,388 (−112 ✓) |
+| + S1 strip | 2,784 | 3,094 (−406 ✓) | 3,261 (−239 ✓) |
+| Timbren axle route | 2,741 | 3,051 (−449 ✓) | 3,218 (−282 ✓) |
+| + S1 strip | 2,614 | 2,924 (−576 ✓) | 3,091 (−409 ✓) |
+
+**Axle recommendation: ride the donor subframe with the DU pulled.** It costs 170 lb of margin V1 doesn't need (still −279, and even full-fresh towing is legal — the tow-empty doctrine becomes optional for V1), and it buys: V2 = *bolt the DU in* instead of frame surgery, skirted-wheel aero from day one, donor brakes + EPB retained, identical axle geometry so the balance solves once, and the part is free with the donor. Meanwhile the DU develops on the bench, unhurried — which is where it was going anyway. V1 water heat = 120V tankless off the Solis (the hydronic loop arrives with V2's coolant system).
+
 ---
-*v0.1, 2026-07-24. Supersedes Flagship Plan §3 numbers (plan v0.2 to be re-pointed here). Feeds SS05 CAD (mass targets per category are now line items, not vibes) and flagship_balance.py re-run.*
+*v0.1, 2026-07-24. Supersedes Flagship Plan §3 numbers (plan v0.2 re-pointed here). Feeds SS05 CAD (mass targets per category are now line items, not vibes) and flagship_balance.py re-run — including the V1 no-DU rear-mass case.*
