@@ -1,4 +1,4 @@
-# Flagship-First Build Plan — v0.1
+# Flagship-First Build Plan — v0.2
 
 **Date:** 2026-07-08 | **Owner:** TJ | **Supersedes:** build order in `PROJECT-SLIPSTREAM-Prototype-Roadmap.md` (that doc's V0.1→V1.0 arc and bench methods stand; the *article being built* changes)
 **The pivot (TJ):** build the salvage Range-Neutral flagship FIRST — not the summer reference trailer. Salvage packs at $27/kWh are the moment; the reference build remains the configurator's default and a future kit, but Build #1 is the flagship.
@@ -10,28 +10,33 @@
 | D-F1 | 1,900 lb dry / Model Y | **≤3,500 lb LOADED, still behind the Model Y** | TJ: it must be pullable by the Y. The assist carries the load in motion; the 3,500 lb line keeps the hitch/brake/dead-battery story legal and honest |
 | D-F2 | 12 kWh 48V LFP house pack | **NO 48V pack. 12V house spine fed by the donor PCS (~2.5 kW)** + ~100Ah 12V LFP buffer | The pack's own DC-DC ran the whole donor car; it's free, open-controlled (Maguire PCS board), and deletes 230 lb + $2.9K + two DC-DC rails |
 | D-F3 | 12' box (reference) | **12' box, 15' fallback** | Weight math (§3) only closes at 12'; 15' triggers only if the pack+living layout physically fails — decide at CAD |
-| D-F4 | Battery = 2170 LR assumption | **CATL LFP Gen2 60 kWh — 2022–2024 Model 3 RWD donor** (Pack Selection Memo 2026-07-10: newest US LFP that exists; same pack design ships new in Canada 2026) | 88 lb lighter, cheaper, safer chemistry, happy parked at 100%; 60 kWh is plenty for assist + house + V2H. Fallbacks ranked: Mach-E SR LFP (72 kWh, costs the PCS spine) → LR 2170 NCA (abundant, 60–80% SoC discipline) |
+| D-F4 | Battery = 2170 LR assumption | **NICKEL NOW, first good donor wins** (Pack Memo v0.3): Track 1B nickel 2023–2025 LR/Standard co-primary with Track 1 LFP 2022–2024 M3 RWD; LFP breaks ties | TJ 2026-07-24: US ubiquity wins; 30–70% V2H band is degradation-gentle (~31 kWh/day); architecture chemistry-agnostic |
+| D-F5 (rev. D-F2) | 12V spine as the power bus + MultiPlus 12/3000 | **Three-rail HV-first** (`HV_Power_Architecture_v0_1.md`): 400V DC bus for HV-native loads · ONE ~97% conversion via **trailer-mounted Solis** · 12V demoted to a ~500W control rail. **PCS keeps 11 kW AC charging + 12V rail** — two independent charge paths. MultiPlus deleted | TJ 2026-07-24: no double conversion, no 200A wiring; generator-mode V2H jumps 2.4 → ~10 kW |
+| D-F6 | Open-controller cabin (window AC, tablet UI) | **Car-brain path (SS09 + SS09a):** same-donor nervous system — screen/Theater, native HVAC + Octovalve + Camp mode, NACS, rear + repeater cameras, app over Starlink Mini; **three-mode pack-master mux** (CAMP car-brain / DRIVE open stack / STORE BE+Solis), car-brain OFF outside CAMP | TJ 2026-07-24: native everything; donor spec refined — hail/rear hit, intact FRONT half, key cards at pickup |
 
 Unchanged: pop-up soft-side, aero doctrine, composting head, outdoor shower, open-source everything, personal-cash cap discipline.
 
 ## 2. Flagship architecture (one page)
 
 ```
-CATL LFP salvage pack (~340V, 55-60 kWh, 966 lb, sealed, stock BMS)
-├── Battery-Emulator (CAN master for pack)
-├── Rear DU e-axle ── Maguire V3.2 board ── hitch-force controller (headless torque)
-├── PCS ── Maguire PCS board:
-│     ├── shore/dock AC in → ~11 kW pack charging (NEMA 14-50)
-│     └── 12V DC-DC out (~2.5 kW) → THE HOUSE SPINE
-├── 12V spine: buffer battery (100Ah LFP) + fridge, lights, pumps, fans,
-│     actuators (PA-17 12V config), Cerbo GX (12V), MPPT (solar→12V buffer)
-├── 12V→120V inverter (MultiPlus 12/3000 class) → AC, induction, water heater
-│     └── house-feed mode → V2H Tier 1 (generator inlet + interlock)
-└── Winter: pack docks to house Solis inverter (V2H Tier 2);
-      trailer hibernates on buffer + solar
+Salvage Tesla pack (LFP 60 or nickel ~78 kWh, sealed, stock BMS)
+├── SS09a MODE MUX — pack has exactly ONE master at a time:
+│     CAMP  → car-brain (gateway/VCFRONT/screen): native HVAC + Octovalve,
+│             Camp mode, Theater, NACS charging, app via Starlink Mini
+│     DRIVE → open stack: Maguire DU board + followdrive (hitch-force),
+│             pump+radiator cooling (SS09a §1b), car-brain OFF
+│     STORE → Battery-Emulator → Solis (V2H dispatch), car-brain OFF
+├── 400V DC bus: rear DU e-axle · compressor (CAN-direct) · hydronic heater
+├── Solis S6 (trailer-mounted): pack ↔ 240/120VAC (~97%, one conversion)
+│     ├── induction / toaster / water heater · EVSE → charges the CAR ~7.6 kW
+│     ├── solar DC-coupled into its MPPTs (series-string roof array)
+│     └── V2H generator mode ~10 kW → house 50A inlet + interlock
+├── PCS (in-pack): 11 kW AC charging (path #2) + 12V control rail (~2.5 kW avail)
+└── 12V control rail: buffer 100Ah + lights, pumps, fans, sound, Starlink,
+      actuators, brake/breakaway, SS09a supervisor  (~300-500W total)
 ```
 
-**Load budget vs the 2.5 kW PCS ceiling:** window AC ~450W + fridge 45W + 12V misc 30W ≈ 525W typical evening — 5× headroom. Peaks (water heater 1.2 kW or induction 1.8 kW via inverter) get load-managed by the Cerbo (never simultaneous with AC at full PCS draw). Hot-night math: 12 hr AC ≈ 5.4 kWh from 55,000 Wh — the pack doesn't notice. **Pack keep-alive** (contactors closed, 10–20W) runs 24/7 while camping — trivial against 55 kWh but must be in the model.
+**Load story (post-D-F5):** kW-class loads live on the Solis AC rail (97%, no ceiling worry at 10 kW class); the 2.5 kW PCS ceiling now only serves the ~300–500W control rail — 5–8× headroom. Cabin thermal is the donor heat pump (CAMP mode, more efficient than the deleted window AC). **Pack keep-alive** (contactors closed, 10–20W) runs 24/7 while camping — trivial, but stays in the model. Car-brain adds ~50–100W while awake in CAMP; zero in DRIVE/STORE (powered off).
 
 ## 3. Weight budget (the 3,500 lb war)
 
@@ -39,23 +44,23 @@ CATL LFP salvage pack (~340V, 55-60 kWh, 966 lb, sealed, stock BMS)
 |---|---|---|
 | Frame (12', tandem-ready single first) + belly + skid | 300 | SS05, designed AROUND the pack |
 | Shell + pop-up (12' composite, 1" walls) | 380 | SS04 stack A/B |
-| CATL LFP pack | 966 | The anchor. LR 2170 (+88) only if LFP donors dry up |
-| Rear DU + mounts + controller + HV plumbing | 280 | SS07 |
-| PCS is in-pack; 12V buffer + inverter + spine wiring | 120 | replaces 275 lb of 48V system |
-| Suspension, wheels, brakes, hitch, jack, tongue | 320 | Timbren class, brakes on axle(s) |
+| Salvage pack | 966–1,054 | LFP 966 / nickel +88 (first good donor wins) |
+| Rear DU + subframe + controller + HV plumbing | 280 | SS07/SS05a |
+| PCS in-pack; 12V buffer + Solis (trailer) + control-rail wiring | 135 | Solis 57 lb replaces MultiPlus 42; 12V fat wiring deleted |
+| Suspension, wheels, brakes, hitch, jack, tongue | 320 | donor subframe IS the axle (SS05a) |
 | Water (20 gal fresh + 10 gray, tanks) | 60 dry | water itself counts as payload |
 | Interior: bed, galley, head, fixtures | 280 | foamie-informed lightweighting |
-| Solar ~800W + mounts | 70 | slightly reduced array |
-| Systems misc (AC unit, heater tank, fans, lights) | 160 | |
-| **DRY TOTAL** | **~2,940** | |
-| Payload budget (water 250 + gear/food ~310) | 560 | weekend discipline |
-| **LOADED** | **≤3,500** ✅ | tongue ~10-11% ≈ 350 lb = exactly the Y's cap — **tongue management is the #2 war after weight** |
+| Solar ~800W + mounts | 70 | series-string into Solis MPPTs |
+| Systems misc + car-brain harvest (HVAC box, manifold, radiator, ECUs, screen, cameras, Starlink) | 220 | window AC deleted; SS09 adds ~80–120, partly offset |
+| **DRY TOTAL** | **~3,030 (LFP) / ~3,120 (nickel)** | ⚠️ was 2,940 — the car-brain harvest bill |
+| Payload budget (water 250 + gear/food) | 470–560 | weekend discipline, now chemistry-dependent |
+| **LOADED** | **≤3,500 — HARD CAP** ⚠️ | **War status: on paper the nickel+car-brain combo eats ~150 lb of payload margin.** Offsets at CAD: interior −50 target, harvest trim (skip VCRIGHT-served items?), payload discipline. The cap never moves; payload flexes. Tongue ~310–350 lb — verify gray-empty case per SS05a |
 
 Every SS-track mass line gets re-baselined to this table. CAD carries CG + tongue live, as ever.
 
 ## 4. Build sequence (replaces reference-build V0.1 scope)
 
-**Phase A — The organs (now → ~Q4 2026).** Donor acquisition per Guide #1 (target: 2021+ SR/RWD LFP, front/rear hit, Fremont). Pack commissioning per Guide #2. DU bench bring-up per Guide #3 (Maguire V3.2 — watch forum for field reports while bidding donors). PCS bring-up (12V rail + shore charging) on the bench — this validates D-F2 before the trailer exists. **Gate A:** pack ≥80% SoH commissioned + DU spins under openinverter + PCS delivers 2 kW+ at 12V for 1 hr.
+**Phase A — The organs (now → ~Q4 2026).** Donor acquisition per Guide #1 (target: 2021+ SR/RWD LFP, front/rear hit, Fremont). Pack commissioning per Guide #2. DU bench bring-up per Guide #3 (Maguire V3.2 — watch forum for field reports while bidding donors). PCS bring-up (12V rail + shore charging) on the bench — this validates D-F2 before the trailer exists. **Gate A (expanded for D-F5/D-F6):** pack ≥80% SoH commissioned + DU spins under openinverter + PCS delivers 2 kW+ at 12V for 1 hr **+ car-brain boots on the bench (screen + HVAC live in Camp mode) + BMS wake verified under BOTH masters through the SS09a mux + Octovalve parks for drive mode + salvage-VIN ownership transfer initiated with Tesla + Solis follows Battery-Emulator on the bench pack.**
 **Phase B — The controller (parallel).** Patent design-around review (US 11,642,970 / 12,162,363 family) → hitch-force controller prototype on the bench rig: load cell + IMU + torque commands to the benched DU. **Gate B:** closed-loop force-following demo on the bench.
 **Phase C — The vehicle (after A).** Frame CAD around the pack (SS05 rework: pack IS the skateboard), shell per SS04 samples, aero per SS06 (frontal geometry unchanged — CFD matrix stands). Rolling chassis + pack + DU install. **Gate C:** rolls, brakes, tows dead (assist off) behind a bigger tug at low speed.
 **Phase D — Integration.** Assist active behind the Model Y, graduated speed/load testing, V2H Tier 1 at home. **Gate D = the money gate:** Model Y tows the loaded flagship on the 200-mile mixed loop at ≤5% net range loss, and every fail-safe (force-sensor fault, CAN loss, 7-pin pull) drops to free-wheel cleanly.
@@ -72,6 +77,9 @@ Deletions: EVE pack system (−$2.9K), 48V MultiPlus + DC-DCs (−$1.7K). Additi
 4. **Dead-battery towing** — 3,400+ lb loaded with assist offline exceeds the Y's comfort; contingency = discharge-limited return legs + the 3,500 line existing for exactly this
 5. **Model Y hitch/brake legalities** — loaded-at-rating is legal; the assist makes it *nicer*, not *more legal* — stay at/under 3,500 loaded, period
 6. **Insurance/registration** (SS08 gray zones) — engage early, document, publish
-7. **Highland PCS unproven with the open controller** (split-donor consequence): the 12V house spine and 11 kW shore charging both ride on the donor PCS; on a 2024-2025 pack donor neither is demonstrated yet. Phase-A bench gate tests exactly this; fallback = Elcon TC 6.6 kW charger + industrial 400→12V DC-DC (~1-2 kW) + larger 12V buffer. DU comes from the proven 2021-2023 pool regardless
+7. **Highland PCS unproven with the open controller** (split-donor consequence): the 12V control rail and 11 kW shore charging both ride on the donor PCS; on a 2024-2025 pack donor neither is demonstrated yet. Phase-A bench gate tests exactly this; fallback = Elcon TC 6.6 kW charger + industrial 400→12V DC-DC (~1-2 kW) + larger 12V buffer — AND the trailer Solis is now a second full charge path, shrinking this risk. DU comes from the proven 2021-2023 pool regardless
+8. **Salvage-VIN app access** (D-F6): basic app tier (climate/Camp/SoC) expected after ownership transfer but not guaranteed; Sentry Live needs Premium Connectivity, which Tesla may refuse on salvage. Mitigation: local USB Sentry recording always works; start the transfer process the week the donor lands; worst case one IP cam on the Starlink WiFi
+9. **Weight pressure from the car-brain harvest** (D-F6): ~80–120 lb added; nickel adds up to another 88. On paper the loaded margin thins to ~0 with full payload — the §3 war status. CAD + corner-weigh decide; if it doesn't close, the trim order is: harvest extras first, interior second, payload discipline third. The 3,500 cap is never the variable
+10. **Mode-mux is unproven anywhere** (SS09a): BMS wake choreography under two masters is the gating unknown; it's a $0 bench test on donor day one, and the whole design keeps "nobody is master" as a safe idle state
 
-*v0.1. Feeds: SS02 (12V spine variant), SS05 (frame-around-pack), SS07 (now Build #1, gate removed), configurator (no-48V-pack option). The reference summer build remains the configurator default and future kit — this doc changes what TJ builds, not what Slipstream offers.*
+*v0.2 (2026-07-24; v0.1 2026-07-08). Feeds: SS02 (control-rail variant), SS05 (frame-around-pack), SS07 (Build #1), SS09/SS09a (car-brain + mux), HV_Power_Architecture memo, configurator (hv_hybrid option). The reference summer build remains the configurator default and future kit — this doc changes what TJ builds, not what Slipstream offers.*
