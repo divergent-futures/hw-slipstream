@@ -58,10 +58,10 @@ def score_lot(lot, cfg):
     # positives
     if "hail" in dmg or "hail" in dmg2:
         reasons.append("HAIL total - cosmetic write-off, pack/drivetrain/thermal all likely intact (top-tier donor)")
-    if any(g in dmg for g in ("front", "rear")):
-        reasons.append(f"good geometry: {dmg}")
     if "rear" in dmg:
-        reasons.append("rear hit preserves front thermal gear (Octovalve Lane-2 harvest)")
+        reasons.append("REAR HIT = IDEAL V1 PACK DONOR (D-F7): pack + car-brain + HVAC/radiator/screen all intact; sacrificed rear subframe/DU comes from the split drive-donor")
+    if "front" in dmg:
+        reasons.append("FRONT HIT = DU/SUBFRAME DONOR ONLY: car-brain + HVAC + radiator harvest lost - do NOT buy as the pack donor (D-F6 needs an intact front end)")
     yr0 = lot.get("year") or 0
     trim0 = (lot.get("trim") or "").lower()
     is_rwd = any(t in trim0 for t in ("rwd", "standard", "sr"))
@@ -83,9 +83,9 @@ def score_lot(lot, cfg):
         reasons.append("parts-only title (cheaper; check your state's buyer rules)")
 
     risky = any(r.startswith("inspect-first") for r in reasons)
-    good = any(r.startswith(("good", "HAIL", "Run", "Fremont", "likely", "TRACK-1", "2021-2023")) for r in reasons)
-    if risky and not good:
-        return "review", reasons
+    good = any(r.startswith(("REAR", "HAIL", "Run", "Fremont", "likely", "TRACK-1", "2021-2023")) for r in reasons)
+    if risky:
+        return "review", reasons  # side/undercarriage ALWAYS gets human eyes, however good the rest looks
     return ("match" if good else "review"), reasons
 
 
