@@ -126,3 +126,28 @@ if __name__ == "__main__" and True:
             print(f"{label}: dry {dd} | tow water-empty {dd+PAYLOAD_GEAR} ({dd+PAYLOAD_GEAR-CAP:+d}) | tow full-fresh {dd+PAYLOAD_GEAR+WATER_FULL} ({dd+PAYLOAD_GEAR+WATER_FULL-CAP:+d})")
     up = 180 + 170 + 28 + 12 - 8   # DU + car-brain + fluids + HV branches - tankless
     print(f"\nV2 upgrade adds back ~{up} lb -> full flagship (the war already closed in §3)")
+
+
+# ---------------- unified branch matrix (TJ, 2026-07-24) ----------------
+GRAY_FULL = 83   # 10 gal gray @ 8.34 - camp-only mass (dumped before ANY towing)
+
+def matrix():
+    S1_FULL = sum(s[1] for i,c,lb,n,s in ITEMS if s and s[0]=="S1")
+    rows = []
+    v2 = total()   # full flagship = the complete inventory
+    for branch, dry_lfp, s1 in (("V1 energy trailer", v1_dry(V1_ADD_SUBFRAME, nickel=False), S1_V1),
+                                ("V2 full flagship", v2, S1_FULL)):
+        for chem, delta in (("LFP", 0), ("nickel", NICKEL_DELTA)):
+            for strip, sdel in (("base", 0), ("+S1", s1)):
+                d = dry_lfp + delta - sdel
+                rows.append((f"{branch} {chem} {strip}", d,
+                             d+PAYLOAD_GEAR, d+PAYLOAD_GEAR+WATER_FULL,
+                             d+PAYLOAD_GEAR+WATER_FULL+GRAY_FULL))
+    return rows
+
+if __name__ == "__main__" and True:
+    print("\n=== BRANCH MATRIX (tow cols vs 3,500 cap; camp static has no cap - GAWR check instead) ===")
+    print(f"{'scenario':34s} {'dry':>5s} {'tow-empty':>10s} {'tow-full':>9s} {'camp-static':>11s}")
+    for name, d, te, tf, cs in matrix():
+        flag = lambda w: f"{w}({w-CAP:+d})"
+        print(f"{name:34s} {d:5d} {flag(te):>10s} {flag(tf):>9s} {cs:>11d}")

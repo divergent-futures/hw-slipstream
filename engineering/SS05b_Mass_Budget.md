@@ -61,12 +61,22 @@ The 3,500 cap applies **while towing**. Gray water must be dumped before towing 
 
 **V1 = nickel pack + wheels. No truck drive, no car-brain, no cooling loop** (passive pack: 11 kW charging = 0.14C on 78 kWh — benign; verify at commissioning). Camping + V2H energy trailer first; the drive system, car-brain, and full thermal loop are the **V2 upgrade** (~+382 lb, which lands exactly on the full-flagship war already closed in §3).
 
-| V1 scenario (nickel) | Dry | Tow water-empty | Tow full-fresh |
-|---|---|---|---|
-| **Donor subframe, DU removed** (recommended) | 2,911 | 3,221 (−279 ✓) | 3,388 (−112 ✓) |
-| + S1 strip | 2,784 | 3,094 (−406 ✓) | 3,261 (−239 ✓) |
-| Timbren axle route | 2,741 | 3,051 (−449 ✓) | 3,218 (−282 ✓) |
-| + S1 strip | 2,614 | 2,924 (−576 ✓) | 3,091 (−409 ✓) |
+### The branch matrix (both branches × both chemistries; subframe-no-DU route)
+
+| Scenario | Dry | Tow water-empty | Tow full-fresh | Camp static* |
+|---|---|---|---|---|
+| **V1 LFP** | 2,823 | 3,133 (−367 ✓) | 3,300 (−200 ✓) | 3,383 |
+| V1 LFP + S1 | 2,696 | 3,006 (−494 ✓) | 3,173 (−327 ✓) | 3,256 |
+| **V1 nickel** (the likely build) | 2,911 | 3,221 (−279 ✓) | 3,388 (−112 ✓) | 3,471 |
+| V1 nickel + S1 | 2,784 | 3,094 (−406 ✓) | 3,261 (−239 ✓) | 3,344 |
+| V2 LFP base | 3,205 | 3,515 (+15 ✗) | 3,682 (+182 ✗) | 3,765 |
+| **V2 LFP + S1** | 3,053 | 3,363 (−137 ✓) | 3,530 (+30 ✗) | 3,613 |
+| V2 nickel base | 3,293 | 3,603 (+103 ✗) | 3,770 (+270 ✗) | 3,853 |
+| **V2 nickel + S1** | 3,141 | 3,451 (−49 ✓) | 3,618 (+118 ✗) | 3,701 |
+
+*Camp static (gear + full fresh + full gray) has no towing cap — it's a GAWR question: at V2 nickel's 3,853 static, the axle sees ~3,450+ vs the donor's ~2,600 lb/axle duty. **The SS05a spring/bearing upgrade flag is now driven by the CAMP case, not the tow case** — carry that into CAD.
+
+Reading the matrix: **V1 is unconditionally legal** — both chemistries, stripped or not, even towing full water. **V2 is only legal with S1 applied AND the tow-empty water doctrine** — S1 stops being optional the day the DU bolts in, so do the S1 items during the V1 build (they're cheaper to do once than to retrofit). Alternate Timbren axle route for V1 (rejected): −170 lb more but makes V2 frame surgery.
 
 **Axle recommendation: ride the donor subframe with the DU pulled.** It costs 170 lb of margin V1 doesn't need (still −279, and even full-fresh towing is legal — the tow-empty doctrine becomes optional for V1), and it buys: V2 = *bolt the DU in* instead of frame surgery, skirted-wheel aero from day one, donor brakes + EPB retained, identical axle geometry so the balance solves once, and the part is free with the donor. Meanwhile the DU develops on the bench, unhurried — which is where it was going anyway. V1 water heat = 120V tankless off the Solis (the hydronic loop arrives with V2's coolant system).
 
