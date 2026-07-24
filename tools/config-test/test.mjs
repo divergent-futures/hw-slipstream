@@ -140,8 +140,10 @@ function testProduct(name, cfgPath, htmlPath, archetypes) {
   if (htmlPath && existsSync(htmlPath)) {
     const html = readFileSync(htmlPath, "utf8");
     if (html.includes("__CONFIG__")) fail("HTML still contains placeholder");
+    else if (!html.trimEnd().endsWith("</html>")) fail("HTML FILE TRUNCATED (missing </html>) - regenerate from engine template");
+    else if (!/<\/script>/.test(html)) fail("HTML missing closing </script> - truncated mid-script");
     else if (!html.includes(raw.trim())) fail("HTML embedded config != config file (regenerate from engine template)");
-    else ok("HTML embeds the exact current config");
+    else ok("HTML complete (closing tags present) and embeds the exact current config");
   }
   return C;
 }

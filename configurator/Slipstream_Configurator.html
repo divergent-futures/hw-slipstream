@@ -4073,4 +4073,14 @@ function compute(){
       const el=document.createElement("li"); el.textContent=line; bomUl.appendChild(el);
     });
     document.getElementById("bomtotal").textContent=`Vendor-researched subtotal ~$${known.toLocaleString()}`+(UI.bomNote?` · ${UI.bomNote}`:"");
-  } else wrap.styl
+  } else wrap.style.display="none";
+}
+
+function resetDefaults(){
+  CONFIG.forks.forEach(f=>{state[f.key]=(f.options.find(o=>o.default)||f.options[0]).id;});
+  render(); compute();
+}
+render(); compute();
+</script>
+</body>
+</html>
