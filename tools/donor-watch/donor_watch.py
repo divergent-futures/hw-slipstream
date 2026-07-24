@@ -67,8 +67,8 @@ def score_lot(lot, cfg):
     is_rwd = any(t in trim0 for t in ("rwd", "standard", "sr"))
     if 2022 <= yr0 <= 2024 and is_rwd and "model 3" in (lot.get("model") or "").lower():
         reasons.append("TRACK-1 FLAGSHIP PACK DONOR: 2022-2024 Model 3 RWD = CATL LFP (Gen2 60 kWh - same pack design still shipping new in 2026; US LFP window closed Oct 2024, so this IS the newest US LFP)")
-    elif yr0 >= 2025:
-        reasons.append("2025+: NO US LFP (Standard trims = NCA/NMC 2170) - newest pack but nickel chemistry; treat as LR-class fallback donor")
+    elif yr0 >= 2025 or (yr0 >= 2023 and not any(t in trim0 for t in ("rwd",))):
+        reasons.append("TRACK-1B NICKEL PACK DONOR (co-primary, first-good-donor-wins): 2023+ LR/Standard 2170 = +15-20 kWh vs LFP, +88-200 lb, needs 60-80% SoC dock discipline; newest cells, best US availability")
     elif 2021 <= yr0 <= 2023:
         reasons.append("2021-2023: proven-DU-path donor (Maguire board demonstrated) - the drive-unit half of the split-donor strategy")
     if lot.get("run_drive"):
@@ -83,7 +83,7 @@ def score_lot(lot, cfg):
         reasons.append("parts-only title (cheaper; check your state's buyer rules)")
 
     risky = any(r.startswith("inspect-first") for r in reasons)
-    good = any(r.startswith(("good", "HAIL", "Run", "Fremont", "likely", "2024+", "2021-2023")) for r in reasons)
+    good = any(r.startswith(("good", "HAIL", "Run", "Fremont", "likely", "TRACK-1", "2021-2023")) for r in reasons)
     if risky and not good:
         return "review", reasons
     return ("match" if good else "review"), reasons

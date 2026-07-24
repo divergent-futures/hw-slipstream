@@ -1,4 +1,4 @@
-# Flagship Pack Selection Memo — v0.1
+# Flagship Pack Selection Memo — v0.3
 
 **Date:** 2026-07-10 | **Trigger:** TJ's challenge to the pack assumption ("no US LFP post-IRA; Canadian Shanghai LFP; is Tesla still right?") | **Research:** 16-search verified pass, sources in transcript
 **Supersedes:** the "2024–2025 pack donor preferred" line in the split-donor strategy — that window is nearly empty for LFP.
@@ -30,6 +30,30 @@
 - Guide #1 Phase 0/1 updated to the corrected window and the trim-identification rule.
 - Flagship Plan D-F4 annotation: LFP target = Gen2 CATL 60 kWh, 2022–2024 donor; NCA fallback carries the 60–80% SoC discipline note.
 - Mach-E documented as pack plan-B with the PCS/12V-spine consequence attached.
+
+## 3b. Policy update (TJ, 2026-07-10 — v0.2): FIRST GOOD DONOR WINS
+
+TJ's follow-up settled the real question: nickel is **acceptable**, and US ubiquity + proximity + newer cells are worth real money. Canada is out (shipping + duty + hassle for a chemistry advantage that doesn't justify it). So chemistry becomes a **tiebreaker, not a gate**:
+
+- **[TRACK 1 LFP]** 2022–2024 Model 3 RWD — wins ties: wider thermal margin, 100% SoC dock tolerance (full 60 kWh available all winter), ~90–200 lb lighter in the 3,500 lb war
+- **[TRACK 1B NICKEL]** 2023–2025 Model 3/Y LR / 2025 Standard — co-primary: +15–20 kWh, newest cells, best availability; costs +88–200 lb payload (tongue stays legal: recomputed ~310/334 lb) and **60–80% SoC dock discipline** (nickel calendar-ages fast at 100%; effective winter house storage ~48–64 kWh of an 80 kWh pack — the capacity edge partly evaporates in V2H duty). Slightly better cold behavior — worth something in CT.
+- Buy whichever clean hail/rear donor appears first at the right price; LFP breaks same-week ties. The watch hunts both as equals; the architecture (Battery-Emulator, PCS, 12V spine, Digital HVIL for 2024+) is chemistry-agnostic and confirmed for all of them.
+
+## 3c. Decision (TJ, 2026-07-24 — v0.3): NICKEL NOW; LFP/sodium stay in the configurator as the future
+
+TJ called it: **go with nickel chemistry now.** LFP and (down the track) sodium-ion remain in the configurator deliberately — it extrapolates forward, and **V2H is the next most important metric**: a parked trailer is a ~70 kWh pack doing nothing, and it should replace a Powerwall, not sit idle.
+
+**Bidirectional draw with the CURRENT architecture (the numbers):**
+
+| Path | Power | Energy per day / event |
+|---|---|---|
+| **Tier 1 — generator mode** (inlet + interlock, any config) | ~2.4 kW cont. (MultiPlus 12/3000 through the 2.5 kW PCS 12V spine) | power-limited: ≤ ~48 kWh/day at full tilt; essentials-backup class |
+| **Tier 2 — seasonal dock** (Solis 11.4 kW hybrid, Battery-Emulator HV direct) | ~10 kW class — Powerwall-3 power | chemistry-limited, below |
+| Nickel ~78 kWh, daily band 70→30% | — | **~31 kWh/day** (TJ's 20–25 estimate was conservative-right); 60→40% = ~16; occasional deep outage cycle 100→10% = ~70 kWh |
+| LFP 60 kWh, near-full band 90→10% | — | **~48 kWh/day** — out-dispatches the bigger nickel pack in home duty |
+| Sodium (future), full band + any-SoC storage | — | ~54 kWh/day of a 60 kWh pack; cold-immune; the endgame V2H chemistry |
+
+The nickel degradation logic TJ stated is correct and now embedded in the configurator: shallow **mid-SoC cycling (30–70%) barely ages nickel — it's sitting at 100% that does.** Daily V2H in that band is a *gentle* duty cycle, and even the 40% band beats a Powerwall 3 (13.5 kWh) by 2.3×. Configurator changes: `v2h` metric (kWh/day) on every config, sodium_future option + roadmap warn rule, chemistry notes rewritten on both Tesla pack options.
 
 ## 4. Standing honesty
 

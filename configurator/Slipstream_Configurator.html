@@ -791,7 +791,8 @@ const CONFIG = {
           "effects": {
             "kwh": -4,
             "addLb": -70,
-            "addCostUsd": -1800
+            "addCostUsd": -1800,
+            "v2hKwh": -4
           }
         },
         {
@@ -816,7 +817,8 @@ const CONFIG = {
           "effects": {
             "kwh": 4,
             "addLb": 70,
-            "addCostUsd": 1800
+            "addCostUsd": 1800,
+            "v2hKwh": 4
           },
           "note": "DIY EVE route ~$90-112/kWh vs EG4/Ruixu server-rack $225-254/kWh (2.2-2.5x) - racks buy UL listing + warranty."
         },
@@ -827,7 +829,8 @@ const CONFIG = {
           "effects": {
             "kwh": 8,
             "addLb": 140,
-            "addCostUsd": 3600
+            "addCostUsd": 3600,
+            "v2hKwh": 8
           },
           "note": "May exceed Model Y tow envelope depending on other choices."
         },
@@ -838,7 +841,8 @@ const CONFIG = {
           "effects": {
             "kwh": -12,
             "addLb": -180,
-            "addCostUsd": -1400
+            "addCostUsd": -1400,
+            "v2hKwh": -12
           },
           "parts": [
             {
@@ -1181,10 +1185,11 @@ const CONFIG = {
         {
           "id": "tesla_2170",
           "name": "Salvage Tesla LR pack ~75 kWh",
-          "sub": "2170 · 1,054 lb · $20-27/kWh street",
+          "sub": "2170 · 1,054 lb · the NOW pack (2026)",
           "effects": {
             "addLb": 1054,
-            "addCostUsd": 3000
+            "addCostUsd": 3000,
+            "v2hKwh": 31
           },
           "parts": [
             {
@@ -1200,15 +1205,16 @@ const CONFIG = {
               "estUsd": 70
             }
           ],
-          "note": "Keep the pack sealed + stock BMS (proprietary cell monitoring - do not re-BMS). Avoid Austin 4680 structural packs. Home-built powered trailer = registration/insurance gray zone; assist-only-while-hitched preserves trailer classification."
+          "note": "Keep the pack sealed + stock BMS (proprietary cell monitoring - do not re-BMS). Avoid Austin 4680 structural packs. CHEMISTRY (2026): nickel is what US salvage stocks - buy it (Pack Memo v0.2: first good donor wins). V2H duty: store at 60-80% SoC, cycle daily in a 30-70% band (~31 kWh/day, degradation-gentle - shallow mid-SoC cycling barely ages nickel; it's SITTING at 100% that does). Occasional deep cycles for outages are fine (~70 kWh available 100-10%). Home-built powered trailer = registration/insurance gray zone; assist-only-while-hitched preserves trailer classification."
         },
         {
           "id": "tesla_lfp",
           "name": "Salvage Tesla LFP pack 55-60 kWh",
-          "sub": "CATL prismatic · ~966 lb · cheaper + safer chemistry",
+          "sub": "CATL prismatic · ~966 lb · wins ties · best V2H duty",
           "effects": {
             "addLb": 966,
-            "addCostUsd": 2200
+            "addCostUsd": 2200,
+            "v2hKwh": 48
           },
           "parts": [
             {
@@ -1224,7 +1230,18 @@ const CONFIG = {
               "estUsd": 70
             }
           ],
-          "note": "Same gray-zone warning as the 2170 pack. LFP tolerates 100% charge parking - better trailer duty fit."
+          "note": "Same gray-zone warning as the 2170 pack. LFP is the BETTER V2H chemistry: tolerates 100% parking and near-full-band daily cycling (~48 kWh/day of 60 - it out-dispatches the bigger nickel pack in home-battery duty). US supply is thin post-Oct 2024 (Pack Memo v0.2), so nickel wins on availability today; grab LFP when a clean donor appears."
+        },
+        {
+          "id": "sodium_future",
+          "name": "Sodium-ion pack (future)",
+          "sub": "roadmap · no salvage volume yet · the endgame V2H chemistry",
+          "effects": {
+            "addLb": 990,
+            "addCostUsd": 1500,
+            "v2hKwh": 54
+          },
+          "note": "Not yet buyable: no sodium-ion EV/pack salvage volume in the US (realistically 2028+). Included deliberately - this configurator extrapolates forward, and V2H is the metric that matters when the trailer is parked. Sodium tolerates full-band daily cycling, storage at ANY SoC including 0%, and -20 C winters: the natural Powerwall-replacement chemistry. A non-Tesla pack has no Tesla PCS: the 12V spine and donor-PCS charging fall back to Elcon charger + industrial 400-12V DC-DC."
         }
       ]
     },
@@ -1285,7 +1302,7 @@ const CONFIG = {
     {
       "key": "home_power",
       "label": "Home power (V2H)",
-      "hint": "The trailer works 12 months a year: camping in summer, home overflow storage in winter.",
+      "hint": "The trailer works 12 months a year: camping in summer, home battery in winter. A parked 60-78 kWh pack replaces a Powerwall stack - that idle capacity is the point.",
       "category": "power",
       "options": [
         {
@@ -1346,7 +1363,7 @@ const CONFIG = {
               "estUsd": 500
             }
           ],
-          "note": "Whole-critical-loads backup + solar charging + TOU arbitrage; 75 kWh = ~2.6 days full-house, weeks of essentials. Undercuts OEM V2H ($4-10K). Pioneer territory: no published mobile-dock precedent; AHJ classification is a documented gray zone. Possible 30% solar ITC for dual-use - verify with tax professional."
+          "note": "Whole-critical-loads backup + solar charging + TOU arbitrage; 75 kWh = ~2.6 days full-house, weeks of essentials. Undercuts OEM V2H ($4-10K). Pioneer territory: no published mobile-dock precedent; AHJ classification is a documented gray zone. Possible 30% solar ITC for dual-use - verify with tax professional. Daily-cycle dispatch is chemistry-dependent: LFP ~48 kWh/day (near-full band), nickel ~31 kWh/day (30-70% band), future sodium ~54 - all vs Powerwall 3's 13.5 kWh."
         }
       ]
     },
@@ -3552,7 +3569,8 @@ const CONFIG = {
       "when": {
         "propulsion_pack": [
           "tesla_2170",
-          "tesla_lfp"
+          "tesla_lfp",
+          "sodium_future"
         ],
         "drivetrain": [
           "none",
@@ -3578,7 +3596,8 @@ const CONFIG = {
         "build_class": "foamie",
         "propulsion_pack": [
           "tesla_2170",
-          "tesla_lfp"
+          "tesla_lfp",
+          "sodium_future"
         ]
       },
       "message": "No HV propulsion pack on a foam build."
@@ -3589,7 +3608,8 @@ const CONFIG = {
       "when": {
         "propulsion_pack": [
           "tesla_2170",
-          "tesla_lfp"
+          "tesla_lfp",
+          "sodium_future"
         ],
         "box_length": "b12"
       },
@@ -3693,6 +3713,14 @@ const CONFIG = {
         "solar": "sol1300"
       },
       "message": "On the 12V spine the MPPT output current caps usable solar near ~900W - the 1,300W array wastes panels. Flagship plan targets ~800W."
+    },
+    {
+      "id": "sodium-roadmap",
+      "type": "warn",
+      "when": {
+        "propulsion_pack": "sodium_future"
+      },
+      "message": "Sodium-ion is a roadmap chemistry - no US salvage volume yet (~2028+). Spec'd here so the V2H story is designed-for, not bolted-on. Tesla-PCS-dependent options need the Elcon + DC-DC fallback."
     }
   ],
   "profiles": [
@@ -3886,6 +3914,14 @@ const CONFIG = {
         "base": 12,
         "addKey": "kwh",
         "unit": " kWh"
+      },
+      {
+        "id": "v2h",
+        "label": "V2H daily dispatch",
+        "base": 12,
+        "addKey": "v2hKwh",
+        "unit": " kWh/day",
+        "approx": true
       },
       {
         "id": "solar",
