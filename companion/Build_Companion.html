@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slipstream Build Companion</title>
+<style>
+:root{--bg:#0f1115;--card:#181c23;--ink:#e8e6e1;--dim:#9aa3af;--acc:#4fc3f7;--ok:#6bd490;--warn:#f0b35c;--line:#2a3038}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,Segoe UI,Roboto,sans-serif}
+header{position:sticky;top:0;z-index:9;background:#0f1115ee;border-bottom:1px solid var(--line);padding:10px 16px}
+h1{font-size:18px;margin:0 0 6px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:5px 14px;border-radius:16px;cursor:pointer;font-size:13px}
+.tab.on{background:var(--acc);color:#06222e;border-color:var(--acc);font-weight:600}
+input[type=search]{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 10px;flex:1;min-width:140px}
+.sum{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--dim);margin-top:6px}
+.sum b{color:var(--ink)}
+main{max-width:980px;margin:0 auto;padding:16px}
+.note{font-size:12.5px;color:var(--dim);border:1px dashed var(--line);border-radius:8px;padding:8px 12px;margin-bottom:14px}
+.phase{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:14px;overflow:hidden}
+.ph{display:flex;gap:10px;align-items:center;padding:12px 14px;cursor:pointer}
+.ph h2{font-size:15.5px;margin:0;flex:1}
+.badge{font-size:11px;padding:2px 8px;border-radius:10px;border:1px solid var(--line);color:var(--dim)}
+.badge.v1{color:var(--ok);border-color:var(--ok)}
+.badge.v2{color:var(--warn);border-color:var(--warn)}
+.dots{color:var(--warn);letter-spacing:2px;font-size:12px}
+.prog{font-size:12px;color:var(--dim)}
+.body{display:none;padding:0 14px 14px;border-top:1px solid var(--line)}
+.phase.open .body{display:block}
+.sec{margin:10px 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;border:1px solid var(--line);border-radius:10px;padding:2px 9px;color:var(--acc);cursor:help}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.docs a{color:var(--acc);text-decoration:none;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+td,th{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:500;font-size:12px}
+td.num,th.num{text-align:right;white-space:nowrap}
+tr.done td{opacity:.45;text-decoration:line-through}
+tr.done td.ck{text-decoration:none;opacity:1}
+a.v{color:var(--acc);text-decoration:none}
+input[type=checkbox]{width:16px;height:16px;accent-color:var(--ok);cursor:pointer}
+footer{color:var(--dim);font-size:12px;text-align:center;padding:20px}
+</style></head><body>
+<header>
+ <h1>Slipstream Build Companion <span style="color:var(--dim);font-weight:400;font-size:13px">V1 energy trailer → V2 truck drive</span></h1>
+ <div class="bar">
+  <button class="tab on" data-f="all">All</button>
+  <button class="tab" data-f="V1">V1</button>
+  <button class="tab" data-f="V2">V2</button>
+  <input type="search" id="q" placeholder="filter parts, vendors, phases…">
+  <button class="tab" id="reset" title="clear all checkmarks">reset progress</button>
+ </div>
+ <div class="sum" id="sum"></div>
+</header>
+<main>
+ <div class="note" id="note"></div>
+ <div id="phases"></div>
+</main>
+<footer>Open-source · github.com/divergent-futures/slipstream · weights: engineering/flagship_mass_budget.py · procedures: guides/ · progress stored locally in this browser</footer>
+<script>
+const DATA = {
+  project: "Slipstream Build Companion",
+  note: "Every cost/weight is a pre-quote, pre-scale estimate. The repo is the authority: mass = engineering/flagship_mass_budget.py, parts = docs/V1_V2_Component_Checklist_v0_1.md, procedures = guides/.",
+  skills: {
+    hv:   {name:"HV electrical safety", level:"CRITICAL", learn:"Guide #2 + openinverter safety threads; never work HV alone"},
+    can:  {name:"CAN bus / embedded",   level:"core",     learn:"SavvyCAN + Battery-Emulator wiki; tools/modeswitch is a worked example"},
+    fab:  {name:"Metal fabrication",    level:"core",     learn:"Bolted 6061 design minimizes welding; farm out the rest"},
+    comp: {name:"Composites",           level:"core",     learn:"Foamie methods (Guide #0) — the tier ladder is the training program"},
+    lv:   {name:"12V systems",          level:"basic",    learn:"Standard RV practice; marine-grade everything"},
+    plumb:{name:"Plumbing",             level:"basic",    learn:"PEX + RV parts"},
+    code: {name:"Software",             level:"as-needed",learn:"Firmware skeletons ship in repo; Battery-Emulator is config, not coding"},
+    mech: {name:"Automotive mechanical",level:"core",     learn:"Subframe R&R = jack stands + breaker bar; Tesla service manual"}
+  },
+  phases: [
+    {id:"P0", v:"V1", title:"Bench setup & safety", diff:2, skills:["hv","can","lv"],
+     docs:["engineering/PhaseA_Bench_Procurement.md","guides/ Guide #2 (Pack Commissioning)"],
+     instructions:"Order everything orderable today — no donor needed. Set up the HV corner: insulated bench, PPE staged, meter practice. Flash Battery-Emulator, dry-run with no pack.",
+     challenges:["PPE habits form now or never","Glove test dates are a calendar item"],
+     parts:[
+      {n:"HV PPE set (Class-0 gloves + leathers, shield, insulated tools, CAT III meter)", q:1, c:450, lb:0, v:"Grainger / Salisbury / Fluke", u:"https://www.grainger.com"},
+      {n:"Battery-Emulator hardware (LilyGo T-2CAN)", q:1, c:70, lb:0, v:"LilyGo / AliExpress", u:"https://lilygo.cc"},
+      {n:"Maguire open PCS controller board", q:1, c:120, lb:0, v:"EVBMW webshop / openinverter", u:"https://www.evbmw.com"},
+      {n:"X098 pack-connector pigtail", q:1, c:60, lb:0, v:"eBay 'Tesla penthouse connector'", u:"https://www.ebay.com"},
+      {n:"Bench 12V PSU + fusing + SavvyCAN dongle", q:1, c:150, lb:0, v:"Amazon / canable.io", u:"https://canable.io"}]},
+    {id:"P1", v:"V1", title:"Donor acquisition", diff:3, skills:["mech"],
+     docs:["guides/ Guide #1 (Donor Procurement)","docs/Pack_Selection_Memo v0.3","tools/donor-watch/"],
+     instructions:"Donor A (pack): REAR-hit or hail, FRONT INTACT, 2023-2025 LR/Standard (nickel, likely) or 2022-24 M3 RWD (LFP wins ties). Grab KEY CARDS at pickup. Donor B (mechanical): cheap front-hit or recycler rear subframe.",
+     challenges:["First GOOD donor wins — don't chase perfect","Front-intact non-negotiable (car-brain is VIN-married to the pack)","No key cards = Toolbox session later"],
+     parts:[
+      {n:"Donor A: pack donor hammer + fees", q:1, c:7000, lb:0, v:"Copart / IAAI (daily watch briefs)", u:"https://www.copart.com"},
+      {n:"Donor A part-out recovery (offset)", q:1, c:-3000, lb:0, v:"FB Marketplace / eBay", u:""},
+      {n:"Donor B: rear subframe assembly, no DU", q:1, c:550, lb:300, v:"LKQ / eBay / Row52", u:"https://www.lkqonline.com"},
+      {n:"Transport to workspace", q:1, c:400, lb:0, v:"uShip / local flatbed", u:"https://www.uship.com"}]},
+    {id:"P2", v:"V1", title:"Teardown, harvest & shelf", diff:3, skills:["mech","hv"],
+     docs:["guides/ Guide #1","engineering/SS09 (harvest manifest)"],
+     instructions:"One teardown, two lists: USE-NOW (sealed pack, charge port, wheels, HV cable) and SHELF-FOR-V2 (entire front nervous system — computer+screen, VC* chain, VCSEC+antennas, HVAC box, supermanifold, compressor, radiator, pumps, cameras, LV battery, harness cut LONG). Label + photograph + WEIGH everything.",
+     challenges:["Pack extraction: 1,000+ lb under a car — lift table + plan","12V DOWN, HV verified 0V before the penthouse","Label discipline: future-you knows nothing"],
+     parts:[
+      {n:"Battery lift table 2,200 lb", q:1, c:350, lb:0, v:"Harbor Freight", u:"https://www.harborfreight.com"},
+      {n:"Shelving + bins + label maker", q:1, c:200, lb:0, v:"Home Depot", u:"https://www.homedepot.com"}]},
+    {id:"P3", v:"V1", title:"Pack commissioning", diff:4, skills:["hv","can"],
+     docs:["guides/ Guide #2 (X098 wake, HVIL, SoH gate)"],
+     instructions:"X098 wake (12V pins 8/18, HVIL 60/120 ohm, CAN 16/15, 30A inrush). BE reads SoC/SoH/temps. GATE: >=80% SoH or the pack goes back to market. PCS bring-up: 12V rail 2kW+ 1hr + shore charge demo.",
+     challenges:["THE gate: bad pack fails here, cheaply","Digital HVIL toggle for 2024+ packs","Respect precharge/inrush"],
+     parts:[
+      {n:"HV service disconnect + Class-T fuse + holder", q:1, c:150, lb:2, v:"Blue Sea / Littelfuse via Waytek", u:"https://www.waytekwire.com"},
+      {n:"HV cable 35mm2 orange + lugs + glands (top-up)", q:1, c:150, lb:8, v:"EVWest", u:"https://www.evwest.com"},
+      {n:"Isolation monitor (optional, Bender class)", q:1, c:200, lb:1, v:"Bender / eBay", u:"https://www.bender.de"}]},
+    {id:"P4", v:"V1", title:"Frame & running gear", diff:4, skills:["fab","mech"],
+     docs:["engineering/SS05a (layout)","engineering/SS05b (mass)","engineering/flagship_balance.py"],
+     instructions:"Aluminum frame around the MEASURED pack. Subframe bosses at the x=120 axle line; 7.5in service channels; skid plate; machine the load-cell coupler mount NOW (V2 provision, free at fab). Bolt donor subframe (no DU) under.",
+     challenges:["Balance is coupled — run the solver, never hand-math (wrong twice already)","GAWR: springs/bearings vs ~3,450 lb camp-static","Bolted design keeps welding minimal"],
+     parts:[
+      {n:"6061 tube + plate + fasteners (frame/belly/skid)", q:1, c:1200, lb:300, v:"Metals Depot / local", u:"https://www.metalsdepot.com"},
+      {n:"E/H brake actuator", q:1, c:400, lb:12, v:"etrailer (HydraStar)", u:"https://www.etrailer.com"},
+      {n:"Brake lines + fittings + DOT4", q:1, c:80, lb:2, v:"etrailer / NAPA", u:"https://www.etrailer.com"},
+      {n:"2-5/16 coupler + load-cell-ready mount", q:1, c:150, lb:45, v:"Bulldog + local machining", u:"https://www.etrailer.com"},
+      {n:"Aluminum tongue jack + caster", q:1, c:90, lb:12, v:"etrailer", u:"https://www.etrailer.com"},
+      {n:"Uprated/air springs (per corner-weigh)", q:1, c:600, lb:5, v:"TBD at corner-weigh", u:""},
+      {n:"7-pin harness + breakaway kit", q:1, c:60, lb:5, v:"etrailer", u:"https://www.etrailer.com"}]},
+    {id:"P5", v:"V1", title:"Shell & pop-up", diff:3, skills:["comp"],
+     docs:["engineering/SS04 (stack)","guides/ Guide #0 (foamie methods at scale)"],
+     instructions:"SS04 stack: foam core + glass + epoxy, 1in walls. Skirted wheels = smooth sides. Pop-up soft-side on actuators or struts. Foamie technique at flagship scale.",
+     challenges:["Epoxy discipline: temp, ratios, cure windows","Big panels want a layup schedule","Weather sealing"],
+     parts:[
+      {n:"Foam + fiberglass + epoxy shell kit", q:1, c:2500, lb:380, v:"US Composites / Fiberglass Supply", u:"https://www.uscomposites.com"},
+      {n:"Pop-up: 4x PA-17 (or manual struts -$450/-22lb)", q:1, c:600, lb:30, v:"Progressive Automations", u:"https://www.progressiveautomations.com"},
+      {n:"Door/hatch hardware + seals + locks", q:1, c:250, lb:15, v:"McMaster / RV surplus", u:"https://www.mcmaster.com"}]},
+    {id:"P6", v:"V1", title:"Power installation", diff:4, skills:["hv","lv","code"],
+     docs:["docs/HV_Power_Architecture_v0_1.md","docs/Flagship Plan v0.2 (D-F5)"],
+     instructions:"Three rails: 400V bus (fused branches) - ONE conversion via trailer Solis (isolators, EPS off-grid) - 12V control rail off PCS + buffer. Solar series-strung into Solis MPPTs. Two charge paths (PCS 11kW native + Solis AC-in). No modeswitch in V1: BE is sole master.",
+     challenges:["Stationary UL9540 unit used mobile: isolate, strain-relieve, document","MPPT start voltage: series-string >=2 panels","N-G bonding for generator-mode V2H"],
+     parts:[
+      {n:"Solis S6-EH1P11.4K-H-US", q:1, c:2400, lb:58, v:"Signature Solar / EcoDirect", u:"https://signaturesolar.com"},
+      {n:"12V 100Ah LFP buffer", q:1, c:300, lb:28, v:"LiTime / SOK", u:"https://www.litime.com"},
+      {n:"800W semi-rigid solar + bonded rails", q:1, c:700, lb:30, v:"BougeRV / Renogy", u:"https://www.bougerv.com"},
+      {n:"PV disconnect + MC4 + fusing", q:1, c:80, lb:2, v:"Signature Solar", u:"https://signaturesolar.com"},
+      {n:"12V fuse panel, busbars, master switch, shunt", q:1, c:250, lb:8, v:"Blue Sea / Victron", u:"https://www.bluesea.com"},
+      {n:"12V loom: marine wire, breakers, terminals", q:1, c:150, lb:10, v:"Waytek", u:"https://www.waytekwire.com"},
+      {n:"NEMA 14-50 trailer inlet + cordset", q:1, c:180, lb:8, v:"Camco / Amazon", u:"https://www.amazon.com"},
+      {n:"Portable EVSE 240V/32A (pack to car)", q:1, c:250, lb:6, v:"Grizzl-E / Tesla Mobile Connector", u:"https://grizzl-e.com"},
+      {n:"Starlink Mini + 12V wiring + mount", q:1, c:599, lb:3, v:"Starlink (+ Roam plan)", u:"https://www.starlink.com"}]},
+    {id:"P7", v:"V1", title:"Camp fit-out", diff:2, skills:["lv","plumb","comp"],
+     docs:["docs/V1_V2_Component_Checklist §1H"],
+     instructions:"S1-spec from day one (V2's margin depends on it): CNC-lightened cabinetry, slat bed + light foam, tankless 120V water heat (hydronic replaces in V2), 20+10 gal tanks.",
+     challenges:["Every 'nice' interior choice is a V2 tax","Winterize: drain for STORE season"],
+     parts:[
+      {n:"12V fridge 45L", q:1, c:400, lb:35, v:"Alpicool / Vitrifrigo", u:"https://www.alpicool.com"},
+      {n:"Portable induction hob", q:1, c:80, lb:6, v:"Duxtop", u:"https://www.amazon.com"},
+      {n:"Sink + faucet + 12V pump", q:1, c:150, lb:8, v:"Shurflo / RV surplus", u:"https://www.etrailer.com"},
+      {n:"120V tankless water heater (V1 only)", q:1, c:150, lb:8, v:"EcoSmart", u:"https://www.ecosmartus.com"},
+      {n:"Fresh 20gal + gray 10gal + PEX + valves", q:1, c:350, lb:32, v:"Plastic-Mart / SharkBite", u:"https://www.plastic-mart.com"},
+      {n:"Composting head", q:1, c:900, lb:28, v:"Nature's Head / OGO", u:"https://natureshead.net"},
+      {n:"Outdoor shower kit", q:1, c:100, lb:4, v:"RV surplus", u:""},
+      {n:"Maxxair fan + vents", q:1, c:250, lb:10, v:"etrailer", u:"https://www.etrailer.com"},
+      {n:"LED lighting + USB-C outlets", q:1, c:150, lb:4, v:"Amazon", u:"https://www.amazon.com"},
+      {n:"CNC-lightened cabinetry + galley materials", q:1, c:600, lb:166, v:"Baltic birch + local CNC", u:""},
+      {n:"Bed: slat platform + light foam", q:1, c:350, lb:55, v:"IKEA slats + foam supplier", u:""},
+      {n:"Safety: extinguisher, smoke/CO, first aid", q:1, c:150, lb:8, v:"Amazon", u:"https://www.amazon.com"}]},
+    {id:"P8", v:"V1", title:"V2H house side — Gate C: V1 SHIPS", diff:3, skills:["hv","lv"],
+     docs:["docs/HV_Power_Architecture §5","docs/Salvage_V2H research"],
+     instructions:"Generator mode: 14-50 inlet + panel interlock + NEC 702.7(C) signage; Solis EPS feeds essentials ~10 kW class. First winter STORE session = V1 finish line. Optional later: grid-interactive dock (permitted install).",
+     challenges:["AHJ conversation: cord-connected portable source","Interlock is not grid-parallel: no export in generator mode"],
+     parts:[
+      {n:"House kit: 14-50 inlet + interlock + signage + electrician", q:1, c:500, lb:0, v:"Reliance Controls + local electrician", u:"https://www.reliancecontrols.com"}]},
+    {id:"P9", v:"V2", title:"Drive bench (parallel anytime)", diff:5, skills:["can","code","hv"],
+     docs:["guides/ Guide #3 (DU bench)","guides/ Guide #4 (followdrive)","docs/Patent_DesignAround_Memo"],
+     instructions:"DU + Maguire V3.2 spins on the bench; ZombieVerter hosts followdrive (tension band 20-60 lbf, shed-fast/add-slow, zero-torque-on-ambiguity). Gate B = scripted force tracking + all faults drop clean.",
+     challenges:["V3.2 is tester-grade: your bench IS the field report","Patent discipline: single-axis measured force, tension-band language","Counsel session before controller repo goes PUBLIC"],
+     parts:[
+      {n:"Drive unit (if not shelved from Donor B)", q:1, c:2000, lb:180, v:"LKQ / recycler", u:"https://www.lkqonline.com"},
+      {n:"Maguire M3-DU logic board V3.2", q:1, c:650, lb:0, v:"EVBMW webshop (field reports first)", u:"https://www.evbmw.com"},
+      {n:"ZombieVerter VCU", q:1, c:400, lb:1, v:"openinverter shop", u:"https://openinverter.org"},
+      {n:"Load cell 5klbf + 24-bit CAN amp", q:1, c:300, lb:2, v:"Anyload / FUTEK", u:"https://www.anyload.com"},
+      {n:"IMU + brake-signal optocoupler", q:1, c:120, lb:0, v:"Mouser", u:"https://www.mouser.com"},
+      {n:"DU HV branch: cable + fuse + connector", q:1, c:200, lb:6, v:"EVWest", u:"https://www.evwest.com"}]},
+    {id:"P10", v:"V2", title:"Car-brain install", diff:4, skills:["can","lv","mech"],
+     docs:["engineering/SS09"],
+     instructions:"Everything comes OFF THE P2 SHELF: computer + screen (enclosure), VC* chain (VCFRONT->VCLEFT->VCSEC sequencing), sensors, cameras in flush mounts, harness TRIMMED. Start Tesla ownership transfer the week it goes live; attempt Premium Connectivity.",
+     challenges:["Bench-boot the whole brain BEFORE trailer install","Missing-module alerts are cosmetic — verify none block","Salvage-VIN app access: expected, not guaranteed"],
+     parts:[
+      {n:"Screen enclosure + mounts + camera housings", q:1, c:250, lb:8, v:"BUILD + printed parts", u:""},
+      {n:"Tesla Toolbox session (only if no key cards)", q:1, c:200, lb:0, v:"Tesla / indie shop", u:"https://service.tesla.com"}]},
+    {id:"P11", v:"V2", title:"Thermal loop live", diff:4, skills:["mech","plumb","hv"],
+     docs:["engineering/SS09a §1b (three cooling levels)","SS07 Lane-2"],
+     instructions:"Install shelved supermanifold + compressor + HVAC box + radiator + pumps; plumb per donor loop (pack + cabin = ONE system). Hydronic off a 400V coolant heater replaces the V1 tankless. R1234yf by a shop.",
+     challenges:["Refrigerant vac + charge = shop territory","Octovalve drive-position parking verified before mux","Coolant fill/burp on a custom loop"],
+     parts:[
+      {n:"Coolant G48-class ~3 gal", q:1, c:60, lb:25, v:"NAPA", u:"https://www.napaonline.com"},
+      {n:"R1234yf charge + line service", q:1, c:250, lb:3, v:"Local AC shop", u:""},
+      {n:"400V coolant heater + hydronic HX + valve", q:1, c:250, lb:12, v:"eBay (VW/Tesla-S class)", u:"https://www.ebay.com"},
+      {n:"AC lines, fittings, dryer", q:1, c:150, lb:5, v:"Cold Hose", u:"https://www.coldhose.com"}]},
+    {id:"P12", v:"V2", title:"Mode mux + integration — Gate D", diff:5, skills:["can","code","hv"],
+     docs:["engineering/SS09a","tools/modeswitch/ (firmware, 24 tests green)"],
+     instructions:"Build modeswitch (firmware in repo): CAN mux at X098 + LV gate for car-ECU set. Bench dual-master BMS wake FIRST. Graduated assist behind the Y -> Gate D: 200-mile loop <=5% net range loss, every fail-safe drops to freewheel.",
+     challenges:["THE gating unknown: dual-master BMS wake — $0 bench test, do early","Verified-dead between every handoff","Publish state diagram + bench log = first standalone OSS release"],
+     parts:[
+      {n:"modeswitch: ESP32 + relays + HV divider + keyed selector + enclosure", q:1, c:175, lb:3, v:"Mouser / Amazon", u:"https://www.mouser.com"}]},
+    {id:"P13", v:"V2", title:"Re-verify & doctrine", diff:2, skills:["code"],
+     docs:["engineering/SS05b","engineering/flagship_balance.py","engineering/flagship_mass_budget.py"],
+     instructions:"Corner-weigh -> re-baseline the mass model line by line. Re-run balance solver (tongue 310-350, gray-empty case). Confirm all S1 items landed. Tow-empty water doctrine now LAW (nickel margin 49 lb).",
+     challenges:["The scale wins every argument with the spreadsheet"],
+     parts:[
+      {n:"Wheel scales / CAT scale sessions", q:1, c:150, lb:0, v:"CAT Scale / rental", u:"https://catscale.com"}]}
+  ]
+};
+const LS="slipstream-companion-v1";
+let state={}; try{state=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){}
+let filt="all", query="";
+const $=s=>document.querySelector(s);
+const money=n=>(n<0?"−$":"$")+Math.abs(n).toLocaleString();
+const save=()=>localStorage.setItem(LS,JSON.stringify(state));
+function diffDots(d){return "●".repeat(d)+"○".repeat(5-d);}
+function render(){
+  $("#note").textContent=DATA.note;
+  const box=$("#phases"); box.innerHTML="";
+  DATA.phases.forEach(p=>{
+    if(filt!=="all"&&p.v!==filt)return;
+    const q=query.toLowerCase();
+    const parts=p.parts.filter(i=>!q||(""+i.n+i.v+p.title).toLowerCase().includes(q));
+    if(q&&!parts.length&&!p.title.toLowerCase().includes(q))return;
+    const show=q?parts:p.parts;
+    const done=p.parts.filter(i=>state[p.id+"|"+i.n]).length;
+    const el=document.createElement("div");
+    el.className="phase"+((state["open|"+p.id]??(p.id==="P0"))?" open":"");
+    const skills=p.skills.map(s=>{const k=DATA.skills[s];return `<span class="chip" title="${k.level} — ${k.learn}">${k.name}</span>`}).join("");
+    const rows=show.map(i=>{const key=p.id+"|"+i.n,on=!!state[key];return `
+      <tr class="${on?"done":""}"><td class="ck"><input type="checkbox" data-k="${key}" ${on?"checked":""}></td>
+      <td>${i.n}</td><td class="num">${money(i.c)}</td><td class="num">${i.lb?i.lb+" lb":"—"}</td>
+      <td>${i.u?`<a class="v" href="${i.u}" target="_blank" rel="noopener">${i.v}</a>`:i.v}</td></tr>`}).join("");
+    const cost=p.parts.reduce((a,i)=>a+i.c,0), lb=p.parts.reduce((a,i)=>a+i.lb,0);
+    el.innerHTML=`
+     <div class="ph" data-p="${p.id}">
+      <span class="badge ${p.v.toLowerCase()}">${p.v}</span><h2>${p.id} · ${p.title}</h2>
+      <span class="dots" title="difficulty ${p.diff}/5">${diffDots(p.diff)}</span>
+      <span class="prog">${done}/${p.parts.length} · ${money(cost)}${lb?" · "+lb+" lb":""}</span>
+     </div>
+     <div class="body">
+      <div class="sec">Skills</div><div class="chips">${skills}</div>
+      <div class="sec">Instructions</div><div>${p.instructions}</div>
+      <div class="sec">Challenges</div><ul>${p.challenges.map(c=>`<li>${c}</li>`).join("")}</ul>
+      <div class="sec">Engineering docs (in repo)</div><div class="docs">${p.docs.map(d=>`<a>${d}</a>`).join(" · ")}</div>
+      <div class="sec">Parts &amp; sourcing</div>
+      <table><tr><th></th><th>Item</th><th class="num">Est $</th><th class="num">Est wt</th><th>Where to buy</th></tr>${rows}</table>
+     </div>`;
+    box.appendChild(el);
+  });
+  const ph=DATA.phases.filter(p=>filt==="all"||p.v===filt);
+  const all=ph.flatMap(p=>p.parts.map(i=>({...i,key:p.id+"|"+i.n})));
+  const doneItems=all.filter(i=>state[i.key]);
+  $("#sum").innerHTML=`
+   <span>items <b>${doneItems.length}/${all.length}</b></span>
+   <span>est. total <b>${money(all.reduce((a,i)=>a+i.c,0))}</b></span>
+   <span>committed so far <b>${money(doneItems.reduce((a,i)=>a+i.c,0))}</b></span>
+   <span>tracked weight <b>${all.reduce((a,i)=>a+i.lb,0).toLocaleString()} lb</b> <span style="font-size:11px">(full matrix: flagship_mass_budget.py)</span></span>`;
+}
+document.addEventListener("click",e=>{
+  const t=e.target;
+  if(t.matches(".tab[data-f]")){document.querySelectorAll(".tab[data-f]").forEach(x=>x.classList.remove("on"));t.classList.add("on");filt=t.dataset.f;render();}
+  if(t.id==="reset"&&confirm("Clear all checkmarks?")){state={};save();render();}
+  const ph=t.closest(".ph"); if(ph&&!t.matches("input")){const id="open|"+ph.dataset.p;state[id]=!(state[id]??(ph.dataset.p==="P0"));save();
+    ph.parentElement.classList.toggle("open");}
+  if(t.matches("input[type=checkbox]")){state[t.dataset.k]=t.checked;if(!t.checked)delete state[t.dataset.k];save();render();}
+});
+$("#q").addEventListener("input",e=>{query=e.target.value;render();});
+render();
+</script></body></html>
