@@ -1,0 +1,17 @@
+{
+  "query": "tesla model 3",
+  "year_min": 2018,
+  "sources": ["copart", "iaai"],
+  "home_zip": "06901",
+  "radius_miles": 100,
+  "urgent_hours": 48,
+  "ntfy_topic": "",
+  "email": {
+    "smtp_host": "",
+    "smtp_port": 465,
+    "user": "",
+    "password": "",
+    "from": "donor-watch@example.com",
+    "to": "you@example.com"
+  }
+}

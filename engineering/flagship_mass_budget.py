@@ -60,6 +60,7 @@ ITEMS = [
     ("sound",              "systems", 8,  "speakers/amp", ("S1", 6, "portable BT speaker rides as payload instead")),
     ("electronics",        "systems", 6,  "modeswitch + BE nodes + enclosures", None),
     ("breakaway_7pin",     "systems", 5,  "breakaway kit + 7-pin harness", None),
+    ("stabilizer_jacks",   "systems", 40, "4x corner stabilizer/leveling jacks - CAUGHT BY RENDER 2026-08-01 (camp-mode image showed them; they were missing from the budget entirely)", ("S2", 12, "scissor jacks -> lighter drop-down or stack-block leveling")),
 ]
 
 NICKEL_DELTA = 88

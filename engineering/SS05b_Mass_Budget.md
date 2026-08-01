@@ -50,6 +50,11 @@ The 3,500 cap applies **while towing**. Gray water must be dumped before towing 
 
 **Verdict: the war closes for BOTH chemistries** with S1 + tow-empty water. Nickel's 49 lb margin is thin — if CAD confirms it, the S2 reserve (−33 lb: 15-gal fresh tank, lighter dry toilet, manual pop-up) buys it back to −82. S3 (gutting the cabin HVAC box for a custom air handler, −20) stays untouched — it would wound the native Camp mode that D-F6 exists for.
 
+## 3b. Omissions found after v0.1 (the model is only as honest as the list)
+
+- **Corner stabilizer/leveling jacks, 40 lb — found 2026-08-01 by looking at a camp-mode RENDER.** Four jacks were visible in the image and absent from the budget. Consequence: **V2 nickel + S1 tow margin fell from −49 to −9 lb.** That configuration now REQUIRES the S2 reserve (15-gal tank, lighter head, manual pop-up, lighter leveling ≈ −45 lb) — it is no longer a reserve, it is the plan. V1 unaffected (still −239).
+- Lesson worth keeping: renders and drawings are cheap omission-detectors. Every new visual gets checked against the parts list before it gets admired.
+
 ## 4. Standing rules
 
 1. **The mass model lives in `flagship_mass_budget.py`** — change the build, change the code, rerun. Same doctrine as the balance solver (which must be re-run at these masses: axle/pack placement shifts, tongue target 310–350).
