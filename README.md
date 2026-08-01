@@ -1,6 +1,6 @@
 # Slipstream
 
-> Intended home: `github.com/divergent-futures/slipstream`
+> Intended home: `github.com/divergent-futures/hw-slipstream`
 
 An open-source, aerodynamic, all-electric camping trailer family — designed to be towed behind an EV without destroying its range. Sister project to the [House BUS](https://github.com/divergent-futures/divergent-house-bus): the bus is the dwelling, Slipstream is the weekend base camp.
 

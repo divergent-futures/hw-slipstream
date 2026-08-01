@@ -1,7 +1,7 @@
 // modeswitch — SS09a pack-master mode handoff supervisor (state machine core)
 // Pure logic: no Arduino/ESP32 dependencies. Compiled identically on the ESP32
 // and natively for tests. The invention is this sequence — trust it, not the silicon.
-// License: MIT (Slipstream project, github.com/divergent-futures/slipstream)
+// License: MIT (Slipstream project, github.com/divergent-futures/hw-slipstream)
 #pragma once
 #include <cstdint>
 #include <cmath>
