@@ -1,7 +1,7 @@
 {
   "lots": {
     "copart:17694723": {
-      "seen": "2026-08-21T18:22:49.339080+00:00",
+      "seen": "2026-08-22T00:40:31.101085+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "copart",
@@ -20,7 +20,7 @@
       "url": "https://www.copart.com/lot/17694723"
     },
     "copart:25875430": {
-      "seen": "2026-08-21T18:22:49.339140+00:00",
+      "seen": "2026-08-22T00:40:31.101153+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "copart",
@@ -39,7 +39,7 @@
       "url": "https://www.copart.com/lot/25875430"
     },
     "copart:26503690": {
-      "seen": "2026-08-21T18:22:49.339161+00:00",
+      "seen": "2026-08-22T00:40:31.101170+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "copart",
@@ -58,7 +58,7 @@
       "url": "https://www.copart.com/lot/26503690"
     },
     "copart:26691389": {
-      "seen": "2026-08-21T18:22:49.339183+00:00",
+      "seen": "2026-08-22T00:40:31.101188+00:00",
       "verdict": "match",
       "human": "pending",
       "source": "copart",
@@ -77,7 +77,7 @@
       "url": "https://www.copart.com/lot/26691389"
     },
     "copart:28170579": {
-      "seen": "2026-08-21T18:22:49.339200+00:00",
+      "seen": "2026-08-22T00:40:31.101198+00:00",
       "verdict": "match",
       "human": "pending",
       "source": "copart",
@@ -96,7 +96,7 @@
       "url": "https://www.copart.com/lot/28170579"
     },
     "copart:28923079": {
-      "seen": "2026-08-21T18:22:49.339213+00:00",
+      "seen": "2026-08-22T00:40:31.101206+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "copart",
@@ -115,7 +115,7 @@
       "url": "https://www.copart.com/lot/28923079"
     },
     "copart:29700370": {
-      "seen": "2026-08-21T18:22:49.339225+00:00",
+      "seen": "2026-08-22T00:40:31.101215+00:00",
       "verdict": "match",
       "human": "pending",
       "source": "copart",
@@ -134,7 +134,7 @@
       "url": "https://www.copart.com/lot/29700370"
     },
     "copart:30172200": {
-      "seen": "2026-08-21T18:22:49.339237+00:00",
+      "seen": "2026-08-22T00:40:31.101224+00:00",
       "verdict": "match",
       "human": "pending",
       "source": "copart",
@@ -153,7 +153,7 @@
       "url": "https://www.copart.com/lot/30172200"
     },
     "copart:30356560": {
-      "seen": "2026-08-21T18:22:49.339248+00:00",
+      "seen": "2026-08-22T00:40:31.101231+00:00",
       "verdict": "match",
       "human": "pending",
       "source": "copart",
@@ -172,7 +172,7 @@
       "url": "https://www.copart.com/lot/30356560"
     },
     "copart:31491332": {
-      "seen": "2026-08-21T18:22:49.339259+00:00",
+      "seen": "2026-08-22T00:40:31.101237+00:00",
       "verdict": "match",
       "human": "pending",
       "source": "copart",
@@ -191,7 +191,7 @@
       "url": "https://www.copart.com/lot/31491332"
     },
     "copart:31696251": {
-      "seen": "2026-08-21T18:22:49.339269+00:00",
+      "seen": "2026-08-22T00:40:31.101244+00:00",
       "verdict": "match",
       "human": "pending",
       "source": "copart",
@@ -210,7 +210,7 @@
       "url": "https://www.copart.com/lot/31696251"
     },
     "copart:31952712": {
-      "seen": "2026-08-21T18:22:49.339281+00:00",
+      "seen": "2026-08-22T00:40:31.101250+00:00",
       "verdict": "match",
       "human": "pending",
       "source": "copart",
@@ -267,7 +267,7 @@
       "url": "https://www.copart.com/lot/32774042"
     },
     "copart:32938980": {
-      "seen": "2026-08-21T18:22:49.339292+00:00",
+      "seen": "2026-08-22T00:40:31.101257+00:00",
       "verdict": "match",
       "human": "pending",
       "source": "copart",
@@ -286,7 +286,7 @@
       "url": "https://www.copart.com/lot/32938980"
     },
     "copart:33136450": {
-      "seen": "2026-08-21T18:22:49.339304+00:00",
+      "seen": "2026-08-22T00:40:31.101266+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "copart",
@@ -305,7 +305,7 @@
       "url": "https://www.copart.com/lot/33136450"
     },
     "copart:33816009": {
-      "seen": "2026-08-21T18:22:49.339313+00:00",
+      "seen": "2026-08-22T00:40:31.101272+00:00",
       "verdict": "reject",
       "human": "pending",
       "source": "copart",
@@ -324,7 +324,7 @@
       "url": "https://www.copart.com/lot/33816009"
     },
     "copart:34074772": {
-      "seen": "2026-08-21T18:22:49.339323+00:00",
+      "seen": "2026-08-22T00:40:31.101278+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "copart",
@@ -1514,7 +1514,7 @@
       "needs_manual_review": true
     },
     "copart:34942429": {
-      "seen": "2026-08-21T18:22:49.339354+00:00",
+      "seen": "2026-08-22T00:40:31.101306+00:00",
       "verdict": "match",
       "human": "pending",
       "source": "copart",
@@ -2589,7 +2589,7 @@
       "needs_manual_review": true
     },
     "copart:35132240": {
-      "seen": "2026-08-21T18:22:49.339369+00:00",
+      "seen": "2026-08-22T00:40:31.101319+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "copart",
@@ -2608,7 +2608,7 @@
       "url": "https://www.copart.com/lot/35132240"
     },
     "copart:36413833": {
-      "seen": "2026-08-21T18:22:49.339400+00:00",
+      "seen": "2026-08-22T00:40:31.101343+00:00",
       "verdict": "reject",
       "human": "pending",
       "source": "copart",
@@ -4725,7 +4725,7 @@
       "needs_manual_review": true
     },
     "iaai:45366236": {
-      "seen": "2026-08-21T18:22:49.340062+00:00",
+      "seen": "2026-08-22T00:40:31.101899+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -4986,7 +4986,7 @@
       "needs_manual_review": true
     },
     "iaai:45776379": {
-      "seen": "2026-08-21T18:22:49.340207+00:00",
+      "seen": "2026-08-22T00:40:31.102034+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -6944,7 +6944,7 @@
       "needs_manual_review": true
     },
     "iaai:46263727": {
-      "seen": "2026-08-21T18:22:49.339532+00:00",
+      "seen": "2026-08-22T00:40:31.101423+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -7076,7 +7076,7 @@
       "needs_manual_review": true
     },
     "iaai:44890173": {
-      "seen": "2026-08-21T18:22:49.340089+00:00",
+      "seen": "2026-08-22T00:40:31.101924+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -7788,7 +7788,7 @@
       "url": "https://www.copart.com/lot/35272471"
     },
     "iaai:46198440": {
-      "seen": "2026-08-21T18:22:49.340419+00:00",
+      "seen": "2026-08-22T00:40:31.102244+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -8327,7 +8327,7 @@
       "needs_manual_review": true
     },
     "iaai:44861010": {
-      "seen": "2026-08-21T18:22:49.340105+00:00",
+      "seen": "2026-08-22T00:40:31.101939+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -8393,7 +8393,7 @@
       "needs_manual_review": true
     },
     "iaai:45920843": {
-      "seen": "2026-08-21T18:22:49.340181+00:00",
+      "seen": "2026-08-22T00:40:31.102010+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -8470,7 +8470,7 @@
       "needs_manual_review": true
     },
     "iaai:46081430": {
-      "seen": "2026-08-21T18:22:49.340283+00:00",
+      "seen": "2026-08-22T00:40:31.102120+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -8701,7 +8701,7 @@
       "needs_manual_review": true
     },
     "iaai:46306099": {
-      "seen": "2026-08-21T18:22:49.340506+00:00",
+      "seen": "2026-08-22T00:40:31.102321+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -9658,7 +9658,7 @@
       "needs_manual_review": true
     },
     "iaai:46153235": {
-      "seen": "2026-08-21T18:22:49.339430+00:00",
+      "seen": "2026-08-22T00:40:31.101368+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -9680,7 +9680,7 @@
       "needs_manual_review": true
     },
     "iaai:46055752": {
-      "seen": "2026-08-21T18:22:49.339452+00:00",
+      "seen": "2026-08-22T00:40:31.101384+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -9702,7 +9702,7 @@
       "needs_manual_review": true
     },
     "iaai:45934034": {
-      "seen": "2026-08-21T18:22:49.339474+00:00",
+      "seen": "2026-08-22T00:40:31.101401+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -9757,7 +9757,7 @@
       "needs_manual_review": true
     },
     "iaai:46288411": {
-      "seen": "2026-08-21T18:22:49.339588+00:00",
+      "seen": "2026-08-22T00:40:31.101475+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -9801,7 +9801,7 @@
       "needs_manual_review": true
     },
     "iaai:45901248": {
-      "seen": "2026-08-21T18:22:49.339649+00:00",
+      "seen": "2026-08-22T00:40:31.101531+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -9845,7 +9845,7 @@
       "needs_manual_review": true
     },
     "iaai:46170755": {
-      "seen": "2026-08-21T18:22:49.339688+00:00",
+      "seen": "2026-08-22T00:40:31.101564+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -9933,7 +9933,7 @@
       "needs_manual_review": true
     },
     "iaai:45543540": {
-      "seen": "2026-08-21T18:22:49.339760+00:00",
+      "seen": "2026-08-22T00:40:31.101627+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -9966,7 +9966,7 @@
       "needs_manual_review": true
     },
     "iaai:46015499": {
-      "seen": "2026-08-21T18:22:49.339803+00:00",
+      "seen": "2026-08-22T00:40:31.101665+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -9977,7 +9977,7 @@
       "needs_manual_review": true
     },
     "iaai:45934950": {
-      "seen": "2026-08-21T18:22:49.339840+00:00",
+      "seen": "2026-08-22T00:40:31.101699+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -9999,7 +9999,7 @@
       "needs_manual_review": true
     },
     "iaai:45546965": {
-      "seen": "2026-08-21T18:22:49.339877+00:00",
+      "seen": "2026-08-22T00:40:31.101731+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -10065,7 +10065,7 @@
       "needs_manual_review": true
     },
     "iaai:45841378": {
-      "seen": "2026-08-21T18:22:49.340006+00:00",
+      "seen": "2026-08-22T00:40:31.101847+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -10120,7 +10120,7 @@
       "needs_manual_review": true
     },
     "iaai:46179311": {
-      "seen": "2026-08-21T18:22:49.340120+00:00",
+      "seen": "2026-08-22T00:40:31.101953+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -10241,7 +10241,7 @@
       "needs_manual_review": true
     },
     "iaai:46253452": {
-      "seen": "2026-08-21T18:22:49.340373+00:00",
+      "seen": "2026-08-22T00:40:31.102202+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -10318,7 +10318,7 @@
       "needs_manual_review": true
     },
     "iaai:46174214": {
-      "seen": "2026-08-21T18:22:49.340135+00:00",
+      "seen": "2026-08-22T00:40:31.101967+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -10406,7 +10406,7 @@
       "needs_manual_review": true
     },
     "iaai:46204190": {
-      "seen": "2026-08-21T18:22:49.339914+00:00",
+      "seen": "2026-08-22T00:40:31.101765+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -10417,7 +10417,7 @@
       "needs_manual_review": true
     },
     "iaai:45797918": {
-      "seen": "2026-08-21T18:22:49.340021+00:00",
+      "seen": "2026-08-22T00:40:31.101861+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -10582,7 +10582,7 @@
       "needs_manual_review": true
     },
     "iaai:45129191": {
-      "seen": "2026-08-21T18:22:49.340569+00:00",
+      "seen": "2026-08-22T00:40:31.102388+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -10615,7 +10615,7 @@
       "needs_manual_review": true
     },
     "iaai:46341746": {
-      "seen": "2026-08-21T18:22:49.340635+00:00",
+      "seen": "2026-08-22T00:40:31.102448+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -10714,7 +10714,7 @@
       "needs_manual_review": true
     },
     "iaai:46102253": {
-      "seen": "2026-08-21T18:22:49.340522+00:00",
+      "seen": "2026-08-22T00:40:31.102336+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -10975,7 +10975,7 @@
       "needs_manual_review": true
     },
     "iaai:46410248": {
-      "seen": "2026-08-21T18:22:49.340466+00:00",
+      "seen": "2026-08-22T00:40:31.102298+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11349,7 +11349,7 @@
       "needs_manual_review": true
     },
     "copart:35857683": {
-      "seen": "2026-08-21T18:22:49.339385+00:00",
+      "seen": "2026-08-22T00:40:31.101332+00:00",
       "verdict": "match",
       "human": "pending",
       "source": "copart",
@@ -11445,7 +11445,7 @@
       "needs_manual_review": true
     },
     "iaai:46274346": {
-      "seen": "2026-08-21T18:22:49.339520+00:00",
+      "seen": "2026-08-22T00:40:31.101412+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11456,7 +11456,7 @@
       "needs_manual_review": true
     },
     "iaai:46163454": {
-      "seen": "2026-08-21T18:22:49.339543+00:00",
+      "seen": "2026-08-22T00:40:31.101435+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11478,7 +11478,7 @@
       "needs_manual_review": true
     },
     "iaai:45120709": {
-      "seen": "2026-08-21T18:22:49.339555+00:00",
+      "seen": "2026-08-22T00:40:31.101445+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11489,7 +11489,7 @@
       "needs_manual_review": true
     },
     "iaai:46351661": {
-      "seen": "2026-08-21T18:22:49.339572+00:00",
+      "seen": "2026-08-22T00:40:31.101460+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11500,7 +11500,7 @@
       "needs_manual_review": true
     },
     "iaai:46163437": {
-      "seen": "2026-08-21T18:22:49.339598+00:00",
+      "seen": "2026-08-22T00:40:31.101485+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11511,7 +11511,7 @@
       "needs_manual_review": true
     },
     "iaai:46126383": {
-      "seen": "2026-08-21T18:22:49.339609+00:00",
+      "seen": "2026-08-22T00:40:31.101495+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11522,7 +11522,7 @@
       "needs_manual_review": true
     },
     "iaai:46042779": {
-      "seen": "2026-08-21T18:22:49.339623+00:00",
+      "seen": "2026-08-22T00:40:31.101505+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11533,7 +11533,7 @@
       "needs_manual_review": true
     },
     "iaai:45960839": {
-      "seen": "2026-08-21T18:22:49.339633+00:00",
+      "seen": "2026-08-22T00:40:31.101516+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11544,7 +11544,7 @@
       "needs_manual_review": true
     },
     "iaai:45875904": {
-      "seen": "2026-08-21T18:22:49.339660+00:00",
+      "seen": "2026-08-22T00:40:31.101540+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11555,7 +11555,7 @@
       "needs_manual_review": true
     },
     "iaai:45874890": {
-      "seen": "2026-08-21T18:22:49.339671+00:00",
+      "seen": "2026-08-22T00:40:31.101550+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11577,7 +11577,7 @@
       "needs_manual_review": true
     },
     "iaai:46147052": {
-      "seen": "2026-08-21T18:22:49.339721+00:00",
+      "seen": "2026-08-22T00:40:31.101595+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11588,7 +11588,7 @@
       "needs_manual_review": true
     },
     "iaai:45768864": {
-      "seen": "2026-08-21T18:22:49.339732+00:00",
+      "seen": "2026-08-22T00:40:31.101604+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11599,7 +11599,7 @@
       "needs_manual_review": true
     },
     "iaai:45743284": {
-      "seen": "2026-08-21T18:22:49.339742+00:00",
+      "seen": "2026-08-22T00:40:31.101613+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11610,7 +11610,7 @@
       "needs_manual_review": true
     },
     "iaai:46027397": {
-      "seen": "2026-08-21T18:22:49.339787+00:00",
+      "seen": "2026-08-22T00:40:31.101651+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11621,7 +11621,7 @@
       "needs_manual_review": true
     },
     "iaai:46009670": {
-      "seen": "2026-08-21T18:22:49.339813+00:00",
+      "seen": "2026-08-22T00:40:31.101675+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11632,7 +11632,7 @@
       "needs_manual_review": true
     },
     "iaai:45887391": {
-      "seen": "2026-08-21T18:22:49.339851+00:00",
+      "seen": "2026-08-22T00:40:31.101708+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11643,7 +11643,7 @@
       "needs_manual_review": true
     },
     "iaai:46261549": {
-      "seen": "2026-08-21T18:22:49.339898+00:00",
+      "seen": "2026-08-22T00:40:31.101750+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11654,7 +11654,7 @@
       "needs_manual_review": true
     },
     "iaai:46110884": {
-      "seen": "2026-08-21T18:22:49.339924+00:00",
+      "seen": "2026-08-22T00:40:31.101774+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11665,7 +11665,7 @@
       "needs_manual_review": true
     },
     "iaai:46099888": {
-      "seen": "2026-08-21T18:22:49.339939+00:00",
+      "seen": "2026-08-22T00:40:31.101788+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11676,7 +11676,7 @@
       "needs_manual_review": true
     },
     "iaai:46067888": {
-      "seen": "2026-08-21T18:22:49.339949+00:00",
+      "seen": "2026-08-22T00:40:31.101797+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11687,7 +11687,7 @@
       "needs_manual_review": true
     },
     "iaai:46059591": {
-      "seen": "2026-08-21T18:22:49.339960+00:00",
+      "seen": "2026-08-22T00:40:31.101805+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11698,7 +11698,7 @@
       "needs_manual_review": true
     },
     "iaai:45984569": {
-      "seen": "2026-08-21T18:22:49.339970+00:00",
+      "seen": "2026-08-22T00:40:31.101815+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11709,7 +11709,7 @@
       "needs_manual_review": true
     },
     "iaai:45979728": {
-      "seen": "2026-08-21T18:22:49.339980+00:00",
+      "seen": "2026-08-22T00:40:31.101824+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11731,7 +11731,7 @@
       "needs_manual_review": true
     },
     "iaai:45790201": {
-      "seen": "2026-08-21T18:22:49.340031+00:00",
+      "seen": "2026-08-22T00:40:31.101870+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11742,7 +11742,7 @@
       "needs_manual_review": true
     },
     "iaai:45876142": {
-      "seen": "2026-08-21T18:22:49.340041+00:00",
+      "seen": "2026-08-22T00:40:31.101879+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11753,7 +11753,7 @@
       "needs_manual_review": true
     },
     "iaai:45602388": {
-      "seen": "2026-08-21T18:22:49.340051+00:00",
+      "seen": "2026-08-22T00:40:31.101889+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11764,7 +11764,7 @@
       "needs_manual_review": true
     },
     "iaai:45197229": {
-      "seen": "2026-08-21T18:22:49.340073+00:00",
+      "seen": "2026-08-22T00:40:31.101908+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11775,7 +11775,7 @@
       "needs_manual_review": true
     },
     "iaai:46140510": {
-      "seen": "2026-08-21T18:22:49.340146+00:00",
+      "seen": "2026-08-22T00:40:31.101978+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11786,7 +11786,7 @@
       "needs_manual_review": true
     },
     "iaai:46139500": {
-      "seen": "2026-08-21T18:22:49.340156+00:00",
+      "seen": "2026-08-22T00:40:31.101987+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11797,7 +11797,7 @@
       "needs_manual_review": true
     },
     "iaai:46254119": {
-      "seen": "2026-08-21T18:22:49.340228+00:00",
+      "seen": "2026-08-22T00:40:31.102053+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11808,7 +11808,7 @@
       "needs_manual_review": true
     },
     "iaai:46224986": {
-      "seen": "2026-08-21T18:22:49.340238+00:00",
+      "seen": "2026-08-22T00:40:31.102062+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11819,7 +11819,7 @@
       "needs_manual_review": true
     },
     "iaai:46208720": {
-      "seen": "2026-08-21T18:22:49.340247+00:00",
+      "seen": "2026-08-22T00:40:31.102087+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11830,7 +11830,7 @@
       "needs_manual_review": true
     },
     "iaai:46134480": {
-      "seen": "2026-08-21T18:22:49.340267+00:00",
+      "seen": "2026-08-22T00:40:31.102106+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11841,7 +11841,7 @@
       "needs_manual_review": true
     },
     "iaai:45944803": {
-      "seen": "2026-08-21T18:22:49.340308+00:00",
+      "seen": "2026-08-22T00:40:31.102130+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11863,7 +11863,7 @@
       "needs_manual_review": true
     },
     "iaai:46308287": {
-      "seen": "2026-08-21T18:22:49.340348+00:00",
+      "seen": "2026-08-22T00:40:31.102179+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11874,7 +11874,7 @@
       "needs_manual_review": true
     },
     "iaai:46289891": {
-      "seen": "2026-08-21T18:22:49.340358+00:00",
+      "seen": "2026-08-22T00:40:31.102187+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11885,7 +11885,7 @@
       "needs_manual_review": true
     },
     "iaai:46246336": {
-      "seen": "2026-08-21T18:22:49.340394+00:00",
+      "seen": "2026-08-22T00:40:31.102221+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11896,7 +11896,7 @@
       "needs_manual_review": true
     },
     "iaai:46230285": {
-      "seen": "2026-08-21T18:22:49.340404+00:00",
+      "seen": "2026-08-22T00:40:31.102230+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11918,7 +11918,7 @@
       "needs_manual_review": true
     },
     "iaai:45839994": {
-      "seen": "2026-08-21T18:22:49.340430+00:00",
+      "seen": "2026-08-22T00:40:31.102265+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11940,7 +11940,7 @@
       "needs_manual_review": true
     },
     "iaai:45133791": {
-      "seen": "2026-08-21T18:22:49.340440+00:00",
+      "seen": "2026-08-22T00:40:31.102274+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11951,7 +11951,7 @@
       "needs_manual_review": true
     },
     "iaai:46331530": {
-      "seen": "2026-08-21T18:22:49.340476+00:00",
+      "seen": "2026-08-22T00:40:31.102307+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11962,7 +11962,7 @@
       "needs_manual_review": true
     },
     "iaai:46155859": {
-      "seen": "2026-08-21T18:22:49.339710+00:00",
+      "seen": "2026-08-22T00:40:31.101585+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11973,7 +11973,7 @@
       "needs_manual_review": true
     },
     "iaai:46115442": {
-      "seen": "2026-08-21T18:22:49.339771+00:00",
+      "seen": "2026-08-22T00:40:31.101637+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11984,7 +11984,7 @@
       "needs_manual_review": true
     },
     "iaai:46007213": {
-      "seen": "2026-08-21T18:22:49.339824+00:00",
+      "seen": "2026-08-22T00:40:31.101684+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -11995,7 +11995,7 @@
       "needs_manual_review": true
     },
     "iaai:45828586": {
-      "seen": "2026-08-21T18:22:49.339861+00:00",
+      "seen": "2026-08-22T00:40:31.101718+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12006,7 +12006,7 @@
       "needs_manual_review": true
     },
     "iaai:45223857": {
-      "seen": "2026-08-21T18:22:49.339888+00:00",
+      "seen": "2026-08-22T00:40:31.101741+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12017,7 +12017,7 @@
       "needs_manual_review": true
     },
     "iaai:46125365": {
-      "seen": "2026-08-21T18:22:49.340166+00:00",
+      "seen": "2026-08-22T00:40:31.101996+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12028,7 +12028,7 @@
       "needs_manual_review": true
     },
     "iaai:45857902": {
-      "seen": "2026-08-21T18:22:49.340192+00:00",
+      "seen": "2026-08-22T00:40:31.102019+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12039,7 +12039,7 @@
       "needs_manual_review": true
     },
     "iaai:45632511": {
-      "seen": "2026-08-21T18:22:49.340218+00:00",
+      "seen": "2026-08-22T00:40:31.102043+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12050,7 +12050,7 @@
       "needs_manual_review": true
     },
     "iaai:46151009": {
-      "seen": "2026-08-21T18:22:49.340257+00:00",
+      "seen": "2026-08-22T00:40:31.102096+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12061,7 +12061,7 @@
       "needs_manual_review": true
     },
     "iaai:45915321": {
-      "seen": "2026-08-21T18:22:49.340318+00:00",
+      "seen": "2026-08-22T00:40:31.102139+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12072,7 +12072,7 @@
       "needs_manual_review": true
     },
     "iaai:46251851": {
-      "seen": "2026-08-21T18:22:49.340384+00:00",
+      "seen": "2026-08-22T00:40:31.102211+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12083,7 +12083,7 @@
       "needs_manual_review": true
     },
     "iaai:46075233": {
-      "seen": "2026-08-21T18:22:49.340532+00:00",
+      "seen": "2026-08-22T00:40:31.102345+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12094,7 +12094,7 @@
       "needs_manual_review": true
     },
     "iaai:45837960": {
-      "seen": "2026-08-21T18:22:49.340543+00:00",
+      "seen": "2026-08-22T00:40:31.102365+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12105,7 +12105,7 @@
       "needs_manual_review": true
     },
     "iaai:45684028": {
-      "seen": "2026-08-21T18:22:49.340553+00:00",
+      "seen": "2026-08-22T00:40:31.102374+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12116,7 +12116,7 @@
       "needs_manual_review": true
     },
     "iaai:43562215": {
-      "seen": "2026-08-21T18:22:49.340579+00:00",
+      "seen": "2026-08-22T00:40:31.102397+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12127,7 +12127,7 @@
       "needs_manual_review": true
     },
     "iaai:46173563": {
-      "seen": "2026-08-21T18:22:49.340590+00:00",
+      "seen": "2026-08-22T00:40:31.102407+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12138,7 +12138,7 @@
       "needs_manual_review": true
     },
     "iaai:46168231": {
-      "seen": "2026-08-21T18:22:49.339699+00:00",
+      "seen": "2026-08-22T00:40:31.101575+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12149,7 +12149,7 @@
       "needs_manual_review": true
     },
     "iaai:45946787": {
-      "seen": "2026-08-21T18:22:49.339991+00:00",
+      "seen": "2026-08-22T00:40:31.101833+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12160,7 +12160,7 @@
       "needs_manual_review": true
     },
     "iaai:46124386": {
-      "seen": "2026-08-21T18:22:49.340328+00:00",
+      "seen": "2026-08-22T00:40:31.102159+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12171,7 +12171,7 @@
       "needs_manual_review": true
     },
     "iaai:46322566": {
-      "seen": "2026-08-21T18:22:49.340338+00:00",
+      "seen": "2026-08-22T00:40:31.102169+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12182,7 +12182,7 @@
       "needs_manual_review": true
     },
     "iaai:44745027": {
-      "seen": "2026-08-21T18:22:49.340450+00:00",
+      "seen": "2026-08-22T00:40:31.102283+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12193,7 +12193,7 @@
       "needs_manual_review": true
     },
     "iaai:46124135": {
-      "seen": "2026-08-21T18:22:49.340600+00:00",
+      "seen": "2026-08-22T00:40:31.102416+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12204,7 +12204,7 @@
       "needs_manual_review": true
     },
     "iaai:45625558": {
-      "seen": "2026-08-21T18:22:49.340610+00:00",
+      "seen": "2026-08-22T00:40:31.102425+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12215,7 +12215,7 @@
       "needs_manual_review": true
     },
     "iaai:42986862": {
-      "seen": "2026-08-21T18:22:49.340620+00:00",
+      "seen": "2026-08-22T00:40:31.102434+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12226,7 +12226,7 @@
       "needs_manual_review": true
     },
     "iaai:46173744": {
-      "seen": "2026-08-21T18:22:49.340647+00:00",
+      "seen": "2026-08-22T00:40:31.102458+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12237,7 +12237,7 @@
       "needs_manual_review": true
     },
     "iaai:46114375": {
-      "seen": "2026-08-21T18:22:49.340658+00:00",
+      "seen": "2026-08-22T00:40:31.102468+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12248,7 +12248,7 @@
       "needs_manual_review": true
     },
     "iaai:45983371": {
-      "seen": "2026-08-21T18:22:49.340669+00:00",
+      "seen": "2026-08-22T00:40:31.102477+00:00",
       "verdict": "review",
       "human": "pending",
       "source": "iaai",
@@ -12276,6 +12276,39 @@
       "source": "iaai",
       "lot_id": "45861854",
       "url": "https://www.iaai.com/VehicleDetail/45861854~US",
+      "model": "tesla model 3",
+      "damage": "",
+      "needs_manual_review": true
+    },
+    "iaai:45912028": {
+      "seen": "2026-08-22T00:40:31.102149+00:00",
+      "verdict": "review",
+      "human": "pending",
+      "source": "iaai",
+      "lot_id": "45912028",
+      "url": "https://www.iaai.com/VehicleDetail/45912028~US",
+      "model": "tesla model 3",
+      "damage": "",
+      "needs_manual_review": true
+    },
+    "iaai:45861293": {
+      "seen": "2026-08-22T00:40:31.102254+00:00",
+      "verdict": "review",
+      "human": "pending",
+      "source": "iaai",
+      "lot_id": "45861293",
+      "url": "https://www.iaai.com/VehicleDetail/45861293~US",
+      "model": "tesla model 3",
+      "damage": "",
+      "needs_manual_review": true
+    },
+    "iaai:46074909": {
+      "seen": "2026-08-22T00:40:31.102354+00:00",
+      "verdict": "review",
+      "human": "pending",
+      "source": "iaai",
+      "lot_id": "46074909",
+      "url": "https://www.iaai.com/VehicleDetail/46074909~US",
       "model": "tesla model 3",
       "damage": "",
       "needs_manual_review": true
